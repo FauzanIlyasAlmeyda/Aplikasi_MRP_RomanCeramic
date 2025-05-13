@@ -8,6 +8,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>23</maven.compiler.release>
-        <exec.mainClass>com.kelompok5.kelompok5app.Kelompok5app</exec.mainClass>
+        <exec.mainClass>com.kelompok5.kelompok5app.main</exec.mainClass>
     </properties>
 </project>

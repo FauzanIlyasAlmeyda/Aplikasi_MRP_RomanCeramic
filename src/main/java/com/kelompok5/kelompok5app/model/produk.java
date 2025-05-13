@@ -8,13 +8,9 @@ package com.kelompok5.kelompok5app.model;
  *
  * @author ASUS
  */
-public class barang {
+public class produk {
     protected int id;
-    protected String nama;
-    protected String kategori;
-    protected int min_stock;
-    protected int max_stock;
+    protected String name;
     protected int stock;
-    protected String vendor;
-    protected double harga;
+    
 }
