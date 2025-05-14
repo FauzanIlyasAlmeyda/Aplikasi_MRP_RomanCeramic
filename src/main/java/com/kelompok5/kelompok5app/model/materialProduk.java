@@ -13,4 +13,11 @@ public class materialProduk {
     protected String idProduk;
     protected material material;
     protected int jumlah;
+
+    public materialProduk(int id, String idProduk, material material, int jumlah) {
+        this.id = id;
+        this.idProduk = idProduk;
+        this.material = material;
+        this.jumlah = jumlah;
+    }
 }

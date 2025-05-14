@@ -18,4 +18,11 @@ public class produk {
     protected String kategori;
     protected List<materialProduk> materialList;
     
+    public produk(int id, String name, int stock, String kategori, List<materialProduk> materialList) {
+        this.id = id;
+        this.name = name;
+        this.stock = stock;
+        this.kategori = kategori;
+        this.materialList = materialList;
+    }
 }
