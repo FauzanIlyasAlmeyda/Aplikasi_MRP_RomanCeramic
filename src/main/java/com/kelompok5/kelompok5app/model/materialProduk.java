@@ -11,7 +11,7 @@ package com.kelompok5.kelompok5app.model;
 public class materialProduk {
     protected int id;
     protected String idProduk;
-    protected material material;
+    protected String material;
     protected int jumlah;
 
     public materialProduk(int id, String idProduk, material material, int jumlah) {
