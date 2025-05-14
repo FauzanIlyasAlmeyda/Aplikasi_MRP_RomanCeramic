@@ -17,4 +17,17 @@ public class barang {
     protected int stock;
     protected String vendor;
     protected double harga;
+
+    barang(int id, String nama, String kategori, int min_stock, int max_stock, int stock, String vendor, double harga) {
+        this.id = id;
+        this.nama = nama;
+        this.kategori = kategori;
+        this.min_stock = min_stock;
+        this.max_stock = max_stock;
+        this.stock = stock;
+        this.vendor = vendor;
+        this.harga = harga;
+    }
+
+    
 }

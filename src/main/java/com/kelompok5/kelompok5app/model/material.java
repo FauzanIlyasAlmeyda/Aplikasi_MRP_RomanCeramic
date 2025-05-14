@@ -17,4 +17,15 @@ public class material {
     protected int stock;
     protected String vendor;
     protected double harga;
+
+    public material(String id, String name, String kategori, int min_stock, int max_stock, int stock, String vendor, double harga) {
+        this.id = id;
+        this.name = name;
+        this.kategori = kategori;
+        this.min_stock = min_stock;
+        this.max_stock = max_stock;
+        this.stock = stock;
+        this.vendor = vendor;
+        this.harga = harga;
+    }
 }
