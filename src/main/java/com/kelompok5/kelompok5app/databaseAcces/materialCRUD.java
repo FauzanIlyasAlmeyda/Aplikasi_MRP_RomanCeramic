@@ -8,12 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class materialCRUD {
-
     private Connection conn = databaseConnection.getConnection();
 
-    public boolean insertMaterial(material m) {
-        String query = "INSERT INTO material (id, name, kategori, min_stock, max_stock, stock, vendor, harga) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+    public void tambahMaterial(material m) {
+        String sql = "INSERT INTO material (id, name, kategori, min_stock, max_stock, stock, vendor, harga) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, m.id);
             stmt.setString(2, m.name);
             stmt.setString(3, m.kategori);
@@ -22,17 +21,16 @@ public class materialCRUD {
             stmt.setInt(6, m.stock);
             stmt.setString(7, m.vendor);
             stmt.setDouble(8, m.harga);
-            return stmt.executeUpdate() > 0;
+            stmt.executeUpdate();
         } catch (SQLException e) {
-            System.err.println("Insert material failed: " + e.getMessage());
-            return false;
+            e.printStackTrace();
         }
     }
 
     public List<material> getAllMaterial() {
-        List<material> materials = new ArrayList<>();
-        String query = "SELECT * FROM material";
-        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+        List<material> list = new ArrayList<>();
+        String sql = "SELECT * FROM material";
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 material m = new material(
                         rs.getString("id"),
@@ -44,40 +42,11 @@ public class materialCRUD {
                         rs.getString("vendor"),
                         rs.getDouble("harga")
                 );
-                materials.add(m);
+                list.add(m);
             }
         } catch (SQLException e) {
-            System.err.println("Read material failed: " + e.getMessage());
+            e.printStackTrace();
         }
-        return materials;
-    }
-
-    public boolean updateMaterial(material m) {
-        String query = "UPDATE material SET name=?, kategori=?, min_stock=?, max_stock=?, stock=?, vendor=?, harga=? WHERE id=?";
-        try (PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, m.name);
-            stmt.setString(2, m.kategori);
-            stmt.setInt(3, m.min_stock);
-            stmt.setInt(4, m.max_stock);
-            stmt.setInt(5, m.stock);
-            stmt.setString(6, m.vendor);
-            stmt.setDouble(7, m.harga);
-            stmt.setString(8, m.id);
-            return stmt.executeUpdate() > 0;
-        } catch (SQLException e) {
-            System.err.println("Update material failed: " + e.getMessage());
-            return false;
-        }
-    }
-
-    public boolean deleteMaterial(String id) {
-        String query = "DELETE FROM material WHERE id=?";
-        try (PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, id);
-            return stmt.executeUpdate() > 0;
-        } catch (SQLException e) {
-            System.err.println("Delete material failed: " + e.getMessage());
-            return false;
-        }
+        return list;
     }
 }
