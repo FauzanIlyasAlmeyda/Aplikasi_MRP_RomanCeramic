@@ -28,4 +28,21 @@ public class material {
         this.vendor = vendor;
         this.harga = harga;
     }
+    
+    public String getid(){
+        return id;
+    }
+    public void setid(){
+        this.id=id;
+    }
+    public String getname(){
+        return name;
+    }
+    public void setname(){
+        this.name = name;
+    }
+    public String getkategori(){
+        return kategori;
+    }
+    
 }
