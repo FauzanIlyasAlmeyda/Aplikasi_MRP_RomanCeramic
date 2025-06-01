@@ -10,6 +10,7 @@ import java.util.List;
 public class materialCRUD {
     private Connection conn = databaseConnection.getConnection();
 
+    // CREATE
     public void tambahMaterial(material m) {
         String sql = "INSERT INTO material (id, name, kategori, min_stock, max_stock, stock, vendor, harga) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -27,6 +28,7 @@ public class materialCRUD {
         }
     }
 
+    // READ
     public List<material> getAllMaterial() {
         List<material> list = new ArrayList<>();
         String sql = "SELECT * FROM material";
@@ -48,5 +50,34 @@ public class materialCRUD {
             e.printStackTrace();
         }
         return list;
+    }
+
+    // UPDATE
+    public void updateMaterial(material m) {
+        String sql = "UPDATE material SET name=?, kategori=?, min_stock=?, max_stock=?, stock=?, vendor=?, harga=? WHERE id=?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, m.name);
+            stmt.setString(2, m.kategori);
+            stmt.setInt(3, m.min_stock);
+            stmt.setInt(4, m.max_stock);
+            stmt.setInt(5, m.stock);
+            stmt.setString(6, m.vendor);
+            stmt.setDouble(7, m.harga);
+            stmt.setString(8, m.id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // DELETE
+    public void deleteMaterial(String id) {
+        String sql = "DELETE FROM material WHERE id=?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
