@@ -11,12 +11,10 @@ package com.kelompok5.kelompok5app.view;
 public class login extends javax.swing.JFrame {
 
     /**
-     * Creates new form loginfix
+     * Creates new form login
      */
     public login() {
         initComponents();
-        setSize(600, 450);  
-        setLocationRelativeTo(null);
     }
 
     /**
@@ -30,140 +28,88 @@ public class login extends javax.swing.JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         bg = new javax.swing.JPanel();
-        header = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        bottompanel = new javax.swing.JPanel();
         loginbox = new javax.swing.JPanel();
-        loginlabel = new javax.swing.JLabel();
-        username = new javax.swing.JLabel();
-        usernamefield = new javax.swing.JTextField();
-        passwordlabel = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        masukbtn = new javax.swing.JButton();
+        Masuk = new javax.swing.JLabel();
+        UsernameLabel = new javax.swing.JLabel();
+        UsernameField = new javax.swing.JTextField();
+        PasswordLabel = new javax.swing.JLabel();
+        PasswordField = new javax.swing.JPasswordField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(800, 500));
 
         bg.setBackground(new java.awt.Color(0, 153, 153));
-        bg.setMinimumSize(new java.awt.Dimension(600, 450));
-        bg.setLayout(new java.awt.BorderLayout());
+        bg.setLayout(new java.awt.GridBagLayout());
 
-        header.setBackground(new java.awt.Color(51, 51, 51));
-        header.setMinimumSize(new java.awt.Dimension(600, 50));
-        header.setPreferredSize(new java.awt.Dimension(600, 50));
-        header.setLayout(new java.awt.BorderLayout());
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("SELAMAT DATANG");
-        header.add(jLabel1, java.awt.BorderLayout.CENTER);
-
-        bg.add(header, java.awt.BorderLayout.NORTH);
-
-        bottompanel.setMinimumSize(new java.awt.Dimension(600, 400));
-        bottompanel.setOpaque(false);
-        bottompanel.setLayout(new java.awt.GridBagLayout());
-
-        loginbox.setMinimumSize(new java.awt.Dimension(350, 250));
+        loginbox.setMinimumSize(new java.awt.Dimension(375, 250));
         loginbox.setOpaque(false);
-        loginbox.setPreferredSize(new java.awt.Dimension(350, 250));
+        loginbox.setPreferredSize(new java.awt.Dimension(375, 250));
         loginbox.setLayout(new java.awt.GridBagLayout());
 
-        loginlabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        loginlabel.setForeground(new java.awt.Color(255, 255, 255));
-        loginlabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        loginlabel.setText("LOGIN");
-        loginlabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Masuk.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        Masuk.setText("MASUK");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
-        loginbox.add(loginlabel, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
+        loginbox.add(Masuk, gridBagConstraints);
 
-        username.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        username.setForeground(new java.awt.Color(255, 255, 255));
-        username.setText("Username :");
+        UsernameLabel.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        UsernameLabel.setText("Username :");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 15);
-        loginbox.add(username, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 10, 15);
+        loginbox.add(UsernameLabel, gridBagConstraints);
 
-        usernamefield.setMinimumSize(new java.awt.Dimension(200, 30));
-        usernamefield.setPreferredSize(new java.awt.Dimension(200, 30));
-        usernamefield.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernamefieldActionPerformed(evt);
-            }
-        });
+        UsernameField.setMinimumSize(new java.awt.Dimension(200, 30));
+        UsernameField.setPreferredSize(new java.awt.Dimension(250, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(20, 0, 20, 0);
-        loginbox.add(usernamefield, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 10, 0);
+        loginbox.add(UsernameField, gridBagConstraints);
 
-        passwordlabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        passwordlabel.setForeground(new java.awt.Color(255, 255, 255));
-        passwordlabel.setText("Password :");
+        PasswordLabel.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        PasswordLabel.setText("Password :");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 15);
-        loginbox.add(passwordlabel, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 20, 15);
+        loginbox.add(PasswordLabel, gridBagConstraints);
 
-        jPasswordField1.setMinimumSize(new java.awt.Dimension(200, 30));
-        jPasswordField1.setPreferredSize(new java.awt.Dimension(200, 30));
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
-            }
-        });
+        PasswordField.setMinimumSize(new java.awt.Dimension(250, 30));
+        PasswordField.setPreferredSize(new java.awt.Dimension(250, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(20, 0, 20, 0);
-        loginbox.add(jPasswordField1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 20, 0);
+        loginbox.add(PasswordField, gridBagConstraints);
 
-        masukbtn.setBackground(new java.awt.Color(51, 51, 51));
-        masukbtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        masukbtn.setForeground(new java.awt.Color(255, 255, 255));
-        masukbtn.setText("MASUK");
-        masukbtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        masukbtn.setIconTextGap(0);
-        masukbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                masukbtnActionPerformed(evt);
-            }
-        });
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("MASUK");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        loginbox.add(masukbtn, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        loginbox.add(jButton1, gridBagConstraints);
 
-        bottompanel.add(loginbox, new java.awt.GridBagConstraints());
-
-        bg.add(bottompanel, java.awt.BorderLayout.CENTER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        bg.add(loginbox, gridBagConstraints);
 
         getContentPane().add(bg, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
-
-    private void masukbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masukbtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_masukbtnActionPerformed
-
-    private void usernamefieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernamefieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernamefieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,16 +150,13 @@ public class login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Masuk;
+    private javax.swing.JPasswordField PasswordField;
+    private javax.swing.JLabel PasswordLabel;
+    private javax.swing.JTextField UsernameField;
+    private javax.swing.JLabel UsernameLabel;
     private javax.swing.JPanel bg;
-    private javax.swing.JPanel bottompanel;
-    private javax.swing.JPanel header;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel loginbox;
-    private javax.swing.JLabel loginlabel;
-    private javax.swing.JButton masukbtn;
-    private javax.swing.JLabel passwordlabel;
-    private javax.swing.JLabel username;
-    private javax.swing.JTextField usernamefield;
     // End of variables declaration//GEN-END:variables
 }
