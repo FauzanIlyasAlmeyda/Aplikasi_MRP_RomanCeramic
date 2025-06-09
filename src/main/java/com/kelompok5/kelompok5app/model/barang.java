@@ -1,14 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.kelompok5.kelompok5app.model;
 
-/**
- *
- * @author ASUS
- */
-public class barang {
+public class Barang {
     protected String id;
     protected String nama;
     protected String kategori;
@@ -18,7 +11,7 @@ public class barang {
     protected String vendor;
     protected double harga;
 
-    public barang(String id, String nama, String kategori, int min_stock, int max_stock, int stock, String vendor, double harga) {
+    public Barang(String id, String nama, String kategori, int min_stock, int max_stock, int stock, String vendor, double harga) {
         this.id = id;
         this.nama = nama;
         this.kategori = kategori;
@@ -27,6 +20,13 @@ public class barang {
         this.stock = stock;
         this.vendor = vendor;
         this.harga = harga;
+    }
+
+    public Barang (String id, String nama, int stock, String kategori) {
+        this.id = id;
+        this.nama = nama;
+        this.stock = stock;
+        this.kategori = kategori;
     }
 
     public String getId() {

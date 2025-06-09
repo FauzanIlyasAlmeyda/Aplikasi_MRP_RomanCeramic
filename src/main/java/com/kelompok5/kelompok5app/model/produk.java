@@ -1,28 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.kelompok5.kelompok5app.model;
 import java.util.List;
 
-
-
-/**
- *
- * @author ASUS
- */
-public class produk {
-    protected String id;
-    protected String name;
-    protected int stock;
-    protected String kategori;
-    protected List<materialProduk> materialList;
+public class Produk extends Barang{
+    protected List<Materialproduk> materialList;
     
-    public produk(String id, String name, int stock, String kategori, List<materialProduk> materialList) {
-        this.id = id;
-        this.name = name;
-        this.stock = stock;
-        this.kategori = kategori;
+    public Produk(String id, String nama, int stock, String kategori, List<Materialproduk> materialList) {
+        super(id, nama,stock,kategori);
         this.materialList = materialList;
     }
 
@@ -33,10 +17,10 @@ public class produk {
         this.id = id;
     }
     public String getName() {
-        return name;
+        return nama;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String nama) {
+        this.nama = nama;
     }
     public int getStock() {
         return stock;
@@ -50,10 +34,10 @@ public class produk {
     public void setKategori(String kategori) {
         this.kategori = kategori;
     }
-    public List<materialProduk> getMaterialList() {
+    public List<Materialproduk> getMaterialList() {
         return materialList;
     }
-    public void setMaterialList(List<materialProduk> materialList) {
+    public void setMaterialList(List<Materialproduk> materialList) {
         this.materialList = materialList;
     }
 }

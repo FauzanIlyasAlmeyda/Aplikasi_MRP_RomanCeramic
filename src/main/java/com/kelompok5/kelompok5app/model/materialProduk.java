@@ -5,13 +5,13 @@
 package com.kelompok5.kelompok5app.model;
 
 
-public class materialProduk {
+public class Materialproduk {
     protected String id;
     protected String idProduk;
-    protected material material;
+    protected Material material;
     protected int jumlah;
 
-    public materialProduk(String id, String idProduk, material material, int jumlah) {
+    public Materialproduk(String id, String idProduk, Material material, int jumlah) {
         this.id = id;
         this.idProduk = idProduk;
         this.material = material;
@@ -30,10 +30,10 @@ public class materialProduk {
     public void setIdProduk(String idProduk) {
         this.idProduk = idProduk;
     }
-    public material getMaterial() {
+    public Material getMaterial() {
         return material;
     }
-    public void setMaterial(material material) {
+    public void setMaterial(Material material) {
         this.material = material;
     }
     public int getJumlah() {

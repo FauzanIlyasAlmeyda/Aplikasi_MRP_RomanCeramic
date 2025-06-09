@@ -1,24 +1,7 @@
 package com.kelompok5.kelompok5app.model;
-public class material {
-    protected String id;
-    protected String name;
-    protected String kategori;
-    protected int min_stock;
-    protected int max_stock;
-    protected int stock;
-    protected String vendor;
-    protected double harga;
-
-    public material(String id, String name, String kategori, int min_stock, int max_stock, int stock, String vendor, double harga) {
-        this.id = id;
-        this.name = name;
-        this.kategori = kategori;
-        this.min_stock = min_stock;
-        this.max_stock = max_stock;
-        this.stock = stock;
-        this.vendor = vendor;
-        this.harga = harga;
-    }
+public class Material extends Barang { 
+    public Material(String id, String nama, String kategori, int min_stock, int max_stock, int stock, String vendor, double harga) {
+        super(id, nama, kategori, min_stock, max_stock,stock, vendor, harga);}
 
     public String getId() {
         return id;
@@ -29,10 +12,10 @@ public class material {
     }
 
     public String getName() {
-        return name;
+        return nama;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String nama) {
+        this.nama = nama;
     }
 
     public String getKategori() {
