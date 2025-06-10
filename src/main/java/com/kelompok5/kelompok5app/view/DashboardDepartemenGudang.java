@@ -8,12 +8,12 @@ package com.kelompok5.kelompok5app.view;
  *
  * @author LENOVO
  */
-public class DashboardPPIC extends javax.swing.JFrame {
+public class DashboardDepartemenGudang extends javax.swing.JFrame {
 
     /**
-     * Creates new form DashboardPPIC
+     * Creates new form DashboardDepartemenGudang
      */
-    public DashboardPPIC() {
+    public DashboardDepartemenGudang() {
         initComponents();
     }
 
@@ -28,7 +28,7 @@ public class DashboardPPIC extends javax.swing.JFrame {
 
         bg = new javax.swing.JPanel();
         Header = new javax.swing.JPanel();
-        txtppic = new javax.swing.JLabel();
+        txtDg = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         BottomPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -44,12 +44,11 @@ public class DashboardPPIC extends javax.swing.JFrame {
         Header.setPreferredSize(new java.awt.Dimension(800, 75));
         Header.setLayout(new java.awt.BorderLayout());
 
-        txtppic.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        txtppic.setText("PPIC");
-        txtppic.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
-        Header.add(txtppic, java.awt.BorderLayout.LINE_START);
+        txtDg.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        txtDg.setText("Departemen Gudang");
+        txtDg.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
+        Header.add(txtDg, java.awt.BorderLayout.CENTER);
 
-        jPanel1.setMinimumSize(new java.awt.Dimension(315, 75));
         jPanel1.setPreferredSize(new java.awt.Dimension(315, 75));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -131,20 +130,20 @@ public class DashboardPPIC extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DashboardPPIC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DashboardDepartemenGudang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DashboardPPIC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DashboardDepartemenGudang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DashboardPPIC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DashboardDepartemenGudang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DashboardPPIC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DashboardDepartemenGudang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DashboardPPIC().setVisible(true);
+                new DashboardDepartemenGudang().setVisible(true);
             }
         });
     }
@@ -156,6 +155,6 @@ public class DashboardPPIC extends javax.swing.JFrame {
     private javax.swing.JPanel bg;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel txtppic;
+    private javax.swing.JLabel txtDg;
     // End of variables declaration//GEN-END:variables
 }
