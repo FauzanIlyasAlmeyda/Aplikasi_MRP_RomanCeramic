@@ -31,7 +31,7 @@ public class BarangCRUD {
         return prefix + "001"; //jika kosong tabelnya bang
     }
 
-    // ✅ Simpan barang
+    
     public boolean insert(Barang b) {
         String sql = "INSERT INTO barang (id, nama, kategori, min_stock, max_stock, stock, vendor, harga) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
@@ -52,7 +52,6 @@ public class BarangCRUD {
         }
     }
 
-    // ✅ Ambil semua barang
     public List<Barang> getAll() {
         List<Barang> list = new ArrayList<>();
         String sql = "SELECT * FROM barang";
@@ -78,7 +77,7 @@ public class BarangCRUD {
         return list;
     }
 
-    // ✅ Cari berdasarkan nama (tidak harus sama persis)
+
     public List<Barang> getByNama(String nama) {
         List<Barang> list = new ArrayList<>();
         String sql = "SELECT * FROM barang WHERE nama LIKE ?";
@@ -100,12 +99,12 @@ public class BarangCRUD {
                 list.add(b);
             }
         } catch (SQLException e) {
-            System.err.println("Gagal cari barang berdasarkan nama: " + e.getMessage());
+            System.err.println("Gagal" + e.getMessage());
         }
         return list;
     }
 
-    // ✅ Update barang
+    
     public boolean update(Barang b) {
         String sql = "UPDATE barang SET nama=?, kategori=?, min_stock=?, max_stock=?, stock=?, vendor=?, harga=? WHERE id=?";
         try {
@@ -125,7 +124,7 @@ public class BarangCRUD {
         }
     }
 
-    // ✅ Hapus barang
+    
     public boolean delete(String id) {
         String sql = "DELETE FROM barang WHERE id = ?";
         try {

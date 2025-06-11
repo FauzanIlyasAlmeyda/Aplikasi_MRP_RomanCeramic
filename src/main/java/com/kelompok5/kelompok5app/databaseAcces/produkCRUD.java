@@ -50,26 +50,32 @@ public class ProdukCRUD {
         }
     }
 
-    // ✅ Ambil semua produk (materialList bisa diambil dari DAO lain nanti)
     public List<Produk> getAll() {
         List<Produk> list = new ArrayList<>();
         String sql = "SELECT * FROM produk";
+        MaterialprodukCRUD mpDao = new MaterialprodukCRUD(); 
+
         try {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
+                String idProduk = rs.getString("id");
+                List<Materialproduk> materialList = mpDao.getByProdukId(idProduk);
+
                 Produk p = new Produk(
-                    rs.getString("id"),
-                    rs.getString("nama"),
-                    rs.getInt("stock"),
-                    rs.getString("kategori"),
-                    null // materialList diisi terpisah dari DAO Materialproduk
+                        idProduk,
+                        rs.getString("nama"),
+                        rs.getInt("stock"),
+                        rs.getString("kategori"),
+                        materialList
                 );
+
                 list.add(p);
             }
         } catch (SQLException e) {
             System.err.println("Gagal ambil data produk: " + e.getMessage());
         }
+
         return list;
     }
 
@@ -83,12 +89,11 @@ public class ProdukCRUD {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Produk p = new Produk(
-                    rs.getString("id"),
-                    rs.getString("nama"),
-                    rs.getInt("stock"),
-                    rs.getString("kategori"),
-                    null
-                );
+                        rs.getString("id"),
+                        rs.getString("nama"),
+                        rs.getInt("stock"),
+                        rs.getString("kategori"),
+                        null);
                 list.add(p);
             }
         } catch (SQLException e) {

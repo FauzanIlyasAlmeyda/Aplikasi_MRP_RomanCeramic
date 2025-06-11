@@ -8,10 +8,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MaterialprodukDAO {
+public class MaterialprodukCRUD {
     private Connection conn;
 
-    public MaterialprodukDAO() {
+    public MaterialprodukCRUD() {
         conn = databaseConnection.getConnection();
     }
 
