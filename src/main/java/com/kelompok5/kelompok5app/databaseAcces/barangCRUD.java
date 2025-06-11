@@ -14,22 +14,21 @@ public class BarangCRUD {
         conn = databaseConnection.getConnection();
     }
 
-    // ✅ Generate ID otomatis (BRG001, BRG002, dst)
     public String generateId() {
         String prefix = "BRG";
-        String sql = "SELECT id FROM barang ORDER BY id DESC LIMIT 1";
+        String querry = "SELECT id FROM barang ORDER BY id DESC LIMIT 1"; // ini ambil id yang terahir
         try {
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rs = stmt.executeQuery(querry);
             if (rs.next()) {
-                String lastId = rs.getString("id");
-                int number = Integer.parseInt(lastId.replace(prefix, ""));
+                String idTerahir = rs.getString("id");
+                int number = Integer.parseInt(idTerahir.replace(prefix, "")); // ekstrak angkanya
                 return prefix + String.format("%03d", number + 1);
             }
         } catch (SQLException e) {
             System.err.println("Gagal generate ID: " + e.getMessage());
         }
-        return prefix + "001";
+        return prefix + "001"; //jika kosong tabelnya bang
     }
 
     // ✅ Simpan barang
