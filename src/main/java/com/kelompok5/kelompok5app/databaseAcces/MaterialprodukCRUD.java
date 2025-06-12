@@ -15,7 +15,7 @@ public class MaterialprodukCRUD {
         conn = databaseConnection.getConnection();
     }
 
-    // ✅ Generate ID otomatis: MP001, MP002, dst
+    
     public String generateId() {
         String prefix = "MP";
         String sql = "SELECT id FROM produk_material ORDER BY id DESC LIMIT 1";
@@ -33,7 +33,7 @@ public class MaterialprodukCRUD {
         return prefix + "001";
     }
 
-    // ✅ Insert materialproduk
+    
     public boolean insert(Materialproduk mp) {
         String sql = "INSERT INTO produk_material (id, produk_id, material_id, jumlah) VALUES (?, ?, ?, ?)";
         try {
@@ -50,7 +50,7 @@ public class MaterialprodukCRUD {
         }
     }
 
-    // ✅ Get list bahan berdasarkan ID produk
+    
     public List<Materialproduk> getByProdukId(String idProduk) {
         List<Materialproduk> list = new ArrayList<>();
         String sql = "SELECT pm.id, pm.jumlah, m.* FROM produk_material pm " +
@@ -86,7 +86,7 @@ public class MaterialprodukCRUD {
         return list;
     }
 
-    // (Opsional) Hapus semua BOM berdasarkan ID produk
+    
     public boolean deleteByProdukId(String idProduk) {
         String sql = "DELETE FROM produk_material WHERE produk_id = ?";
         try {

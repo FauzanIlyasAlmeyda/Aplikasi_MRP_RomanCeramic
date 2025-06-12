@@ -10,7 +10,7 @@ import java.util.List;
 public class materialCRUD {
     private Connection conn = databaseConnection.getConnection();
 
-    // ✅ CREATE
+    
     public void tambahMaterial(Material m) {
         String sql = "INSERT INTO barang (id, nama, kategori, min_stock, max_stock, stock, vendor, harga) VALUES (?, ?, 'material', ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -27,7 +27,7 @@ public class materialCRUD {
         }
     }
 
-    // ✅ READ (hanya material)
+    
     public List<Material> getAllMaterial() {
         List<Material> list = new ArrayList<>();
         String sql = "SELECT * FROM barang WHERE kategori = 'material'";
@@ -51,7 +51,7 @@ public class materialCRUD {
         return list;
     }
 
-    // ✅ UPDATE (kategori tidak bisa diubah)
+    
     public void updateMaterial(Material m) {
         String sql = "UPDATE barang SET nama=?, min_stock=?, max_stock=?, stock=?, vendor=?, harga=? WHERE id=? AND kategori='material'";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -68,7 +68,7 @@ public class materialCRUD {
         }
     }
 
-    // ✅ DELETE
+    
     public void deleteMaterial(String id) {
         String sql = "DELETE FROM barang WHERE id=? AND kategori='material'";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {

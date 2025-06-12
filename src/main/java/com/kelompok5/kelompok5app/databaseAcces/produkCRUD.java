@@ -15,7 +15,7 @@ public class ProdukCRUD {
         conn = databaseConnection.getConnection();
     }
 
-    // ✅ Generate ID otomatis (PRD001, PRD002, ...)
+    
     public String generateId() {
         String prefix = "PRD";
         String sql = "SELECT id FROM produk ORDER BY id DESC LIMIT 1";
@@ -33,7 +33,7 @@ public class ProdukCRUD {
         return prefix + "001";
     }
 
-    // ✅ Insert produk (tanpa materialList dulu)
+    
     public boolean insert(Produk p) {
         String sql = "INSERT INTO produk (id, nama, kategori, stock) VALUES (?, ?, ?, ?)";
         try {
@@ -79,7 +79,7 @@ public class ProdukCRUD {
         return list;
     }
 
-    // ✅ Cari produk berdasarkan nama
+    
     public List<Produk> getByNama(String nama) {
         List<Produk> list = new ArrayList<>();
         String sql = "SELECT * FROM produk WHERE nama LIKE ?";
@@ -102,7 +102,7 @@ public class ProdukCRUD {
         return list;
     }
 
-    // ✅ Update produk
+    
     public boolean update(Produk p) {
         String sql = "UPDATE produk SET nama=?, kategori=?, stock=? WHERE id=?";
         try {
@@ -118,7 +118,7 @@ public class ProdukCRUD {
         }
     }
 
-    // ✅ Delete produk
+    
     public boolean delete(String id) {
         String sql = "DELETE FROM produk WHERE id = ?";
         try {
