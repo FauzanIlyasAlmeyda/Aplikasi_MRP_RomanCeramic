@@ -25,11 +25,14 @@ public class DashboardDepartemenGudang extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         bg = new javax.swing.JPanel();
         Header = new javax.swing.JPanel();
         txtDg = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        BtnCreateLaporan = new javax.swing.JButton();
+        BtnListLaporan = new javax.swing.JButton();
         BottomPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelBarang = new javax.swing.JTable();
@@ -49,18 +52,25 @@ public class DashboardDepartemenGudang extends javax.swing.JFrame {
         txtDg.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
         Header.add(txtDg, java.awt.BorderLayout.CENTER);
 
+        jPanel1.setOpaque(false);
         jPanel1.setPreferredSize(new java.awt.Dimension(315, 75));
+        jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 315, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 75, Short.MAX_VALUE)
-        );
+        BtnCreateLaporan.setBackground(new java.awt.Color(0, 0, 0));
+        BtnCreateLaporan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BtnCreateLaporan.setForeground(new java.awt.Color(255, 255, 255));
+        BtnCreateLaporan.setText("Buat Laporan");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        jPanel1.add(BtnCreateLaporan, gridBagConstraints);
+
+        BtnListLaporan.setBackground(new java.awt.Color(0, 0, 0));
+        BtnListLaporan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BtnListLaporan.setForeground(new java.awt.Color(255, 255, 255));
+        BtnListLaporan.setText("List Laporan");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        jPanel1.add(BtnListLaporan, gridBagConstraints);
 
         Header.add(jPanel1, java.awt.BorderLayout.EAST);
 
@@ -69,38 +79,49 @@ public class DashboardDepartemenGudang extends javax.swing.JFrame {
         BottomPanel.setOpaque(false);
         BottomPanel.setLayout(new java.awt.BorderLayout());
 
+        jScrollPane1.setMinimumSize(new java.awt.Dimension(800, 425));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(800, 425));
+
         TabelBarang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Kode Barang", "Nama Barang", "Min Stok", "Maks Stok", "Stok", "Order", "Vendor", "Tanggal Diperbarui"
+                "Kode Barang", "Nama Barang", "Kategori", "Min Stok", "Maks Stok", "Stok", "Order", "Vendor", "Tanggal Diperbarui"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         TabelBarang.setShowGrid(true);
         jScrollPane1.setViewportView(TabelBarang);
 
@@ -150,6 +171,8 @@ public class DashboardDepartemenGudang extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BottomPanel;
+    private javax.swing.JButton BtnCreateLaporan;
+    private javax.swing.JButton BtnListLaporan;
     private javax.swing.JPanel Header;
     private javax.swing.JTable TabelBarang;
     private javax.swing.JPanel bg;
