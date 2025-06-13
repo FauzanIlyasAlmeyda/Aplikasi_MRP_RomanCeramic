@@ -4,6 +4,7 @@
  */
 package com.kelompok5.kelompok5app.view;
 
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,6 +19,14 @@ public class DasboardAdmin extends javax.swing.JFrame {
      */
     public DasboardAdmin() {
         initComponents();
+        // Set Layout untuk CardPanel menjadi CardLayout
+CardPanel.setLayout(new java.awt.CardLayout());
+
+// Menambahkan CardTabelBarang ke CardPanel dengan ID "card1" untuk tabel barang
+CardPanel.add(CardTabelBarang, "card1");
+
+// Menambahkan CardTabelProduk ke CardPanel dengan ID "card3" untuk tabel produk
+CardPanel.add(CardTabelProduk, "card2");
     }
 
     /**
@@ -38,7 +47,8 @@ public class DasboardAdmin extends javax.swing.JFrame {
         BtnEdit = new javax.swing.JButton();
         BtnAdd = new javax.swing.JButton();
         BtnProduk = new javax.swing.JButton();
-        BottomPanel = new javax.swing.JPanel();
+        Bottompanel = new javax.swing.JPanel();
+        CardPanel = new javax.swing.JPanel();
         CardTabelProduk = new javax.swing.JPanel();
         ScrollTabelProduk = new javax.swing.JScrollPane();
         TabelProduk = new javax.swing.JTable();
@@ -48,7 +58,6 @@ public class DasboardAdmin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 500));
-        setPreferredSize(new java.awt.Dimension(800, 500));
 
         bg.setBackground(new java.awt.Color(153, 153, 153));
         bg.setMinimumSize(new java.awt.Dimension(800, 500));
@@ -125,6 +134,11 @@ public class DasboardAdmin extends javax.swing.JFrame {
         BtnProduk.setText("Produk");
         BtnProduk.setMinimumSize(new java.awt.Dimension(85, 30));
         BtnProduk.setPreferredSize(new java.awt.Dimension(85, 30));
+        BtnProduk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnProdukActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -136,10 +150,12 @@ public class DasboardAdmin extends javax.swing.JFrame {
 
         bg.add(header, java.awt.BorderLayout.PAGE_START);
 
-        BottomPanel.setMinimumSize(new java.awt.Dimension(800, 425));
-        BottomPanel.setOpaque(false);
-        BottomPanel.setPreferredSize(new java.awt.Dimension(800, 425));
-        BottomPanel.setLayout(new java.awt.CardLayout());
+        Bottompanel.setLayout(new java.awt.BorderLayout());
+
+        CardPanel.setMinimumSize(new java.awt.Dimension(800, 425));
+        CardPanel.setOpaque(false);
+        CardPanel.setPreferredSize(new java.awt.Dimension(800, 425));
+        CardPanel.setLayout(new java.awt.CardLayout());
 
         CardTabelProduk.setMinimumSize(new java.awt.Dimension(800, 425));
         CardTabelProduk.setPreferredSize(new java.awt.Dimension(800, 425));
@@ -193,9 +209,9 @@ public class DasboardAdmin extends javax.swing.JFrame {
         TabelProduk.setShowGrid(true);
         ScrollTabelProduk.setViewportView(TabelProduk);
 
-        CardTabelProduk.add(ScrollTabelProduk, java.awt.BorderLayout.PAGE_END);
+        CardTabelProduk.add(ScrollTabelProduk, java.awt.BorderLayout.CENTER);
 
-        BottomPanel.add(CardTabelProduk, "card3");
+        CardPanel.add(CardTabelProduk, "card2");
 
         CardTabelBarang.setMinimumSize(new java.awt.Dimension(800, 425));
         CardTabelBarang.setPreferredSize(new java.awt.Dimension(800, 425));
@@ -233,7 +249,7 @@ public class DasboardAdmin extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Kode barang", "Nama Barang", "Kategori", "Min Stok", "Maks Stok", "Stok", "Order", "Vendor", "Tanggal DIperbarui"
+                "Kode barang", "Nama Barang", "Kategori", "Min Stok", "Maks Stok", "Stok", "Order", "Vendor", "Tanggal Diperbarui"
             }
         ) {
             Class[] types = new Class [] {
@@ -252,9 +268,11 @@ public class DasboardAdmin extends javax.swing.JFrame {
 
         CardTabelBarang.add(ScrollTabelBarang, java.awt.BorderLayout.CENTER);
 
-        BottomPanel.add(CardTabelBarang, "card3");
+        CardPanel.add(CardTabelBarang, "card1");
 
-        bg.add(BottomPanel, java.awt.BorderLayout.CENTER);
+        Bottompanel.add(CardPanel, java.awt.BorderLayout.PAGE_START);
+
+        bg.add(Bottompanel, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(bg, java.awt.BorderLayout.CENTER);
 
@@ -287,6 +305,9 @@ public class DasboardAdmin extends javax.swing.JFrame {
 
     String nama = JOptionPane.showInputDialog(this, "Masukkan Nama Barang:");
     if (nama == null || nama.trim().isEmpty()) return;
+    
+    String kategori = JOptionPane.showInputDialog(this, "Masukkan Kategori Barang:");
+    if (kategori == null || kategori.trim().isEmpty()) return;
 
     String minStok = JOptionPane.showInputDialog(this, "Masukkan Min Stok:");
     if (minStok == null || minStok.trim().isEmpty()) return;
@@ -324,33 +345,43 @@ public class DasboardAdmin extends javax.swing.JFrame {
     // Ambil data lama
     String kode = (String) model.getValueAt(selectedRow, 0);
     String nama = (String) model.getValueAt(selectedRow, 1);
-    String minStok = (String) model.getValueAt(selectedRow, 2);
-    String maksStok = (String) model.getValueAt(selectedRow, 3);
-    String stok = (String) model.getValueAt(selectedRow, 4);
-    String order = (String) model.getValueAt(selectedRow, 5);
-    String vendor = (String) model.getValueAt(selectedRow, 6);
-    String tanggal = (String) model.getValueAt(selectedRow, 7);
+    String kategori = (String) model.getValueAt(selectedRow, 2);
+    String minStok = (String) model.getValueAt(selectedRow, 3);
+    String maksStok = (String) model.getValueAt(selectedRow, 4);
+    String stok = (String) model.getValueAt(selectedRow, 5);
+    String order = (String) model.getValueAt(selectedRow, 6);
+    String vendor = (String) model.getValueAt(selectedRow, 7);
+    String tanggal = (String) model.getValueAt(selectedRow, 8);
 
     // Dialog edit per kolom
     kode = JOptionPane.showInputDialog(this, "Edit Kode Barang:", kode);
     nama = JOptionPane.showInputDialog(this, "Edit Nama Barang:", nama);
+    kategori = JOptionPane.showInputDialog(this, "Edit Kategori Barang:");
     minStok = JOptionPane.showInputDialog(this, "Edit Min Stok:", minStok);
     maksStok = JOptionPane.showInputDialog(this, "Edit Maks Stok:", maksStok);
     stok = JOptionPane.showInputDialog(this, "Edit Stok:", stok);
     order = JOptionPane.showInputDialog(this, "Edit Order:", order);
     vendor = JOptionPane.showInputDialog(this, "Edit Vendor:", vendor);
     tanggal = JOptionPane.showInputDialog(this, "Edit Tanggal Diperbarui:", tanggal);
+    
 
     // Set nilai baru ke tabel
     model.setValueAt(kode, selectedRow, 0);
     model.setValueAt(nama, selectedRow, 1);
-    model.setValueAt(minStok, selectedRow, 2);
-    model.setValueAt(maksStok, selectedRow, 3);
-    model.setValueAt(stok, selectedRow, 4);
-    model.setValueAt(order, selectedRow, 5);
-    model.setValueAt(vendor, selectedRow, 6);
-    model.setValueAt(tanggal, selectedRow, 7);
+    model.setValueAt(kategori, selectedRow, 2);
+    model.setValueAt(minStok, selectedRow, 3);
+    model.setValueAt(maksStok, selectedRow, 4);
+    model.setValueAt(stok, selectedRow, 5);
+    model.setValueAt(order, selectedRow, 6);
+    model.setValueAt(vendor, selectedRow, 7);
+    model.setValueAt(tanggal, selectedRow, 8);
     }//GEN-LAST:event_BtnEditActionPerformed
+
+    private void BtnProdukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnProdukActionPerformed
+        // TODO add your handling code here:
+        CardLayout cl = (CardLayout) Bottompanel.getLayout();
+    cl.show(Bottompanel, "card2");
+    }//GEN-LAST:event_BtnProdukActionPerformed
 
     /**
      * @param args the command line arguments
@@ -389,12 +420,13 @@ public class DasboardAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel BottomPanel;
+    private javax.swing.JPanel Bottompanel;
     private javax.swing.JButton BtnAdd;
     private javax.swing.JButton BtnDel;
     private javax.swing.JButton BtnEdit;
     private javax.swing.JPanel BtnPanel;
     private javax.swing.JButton BtnProduk;
+    private javax.swing.JPanel CardPanel;
     private javax.swing.JPanel CardTabelBarang;
     private javax.swing.JPanel CardTabelProduk;
     private javax.swing.JScrollPane ScrollTabelBarang;
