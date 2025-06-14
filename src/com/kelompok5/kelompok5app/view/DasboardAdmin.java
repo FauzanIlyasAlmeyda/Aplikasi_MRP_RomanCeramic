@@ -6,6 +6,8 @@ package com.kelompok5.kelompok5app.view;
 
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -43,16 +45,26 @@ CardPanel.add(CardTabelProduk, "card2");
         header = new javax.swing.JPanel();
         textadm = new javax.swing.JLabel();
         BtnPanel = new javax.swing.JPanel();
-        BtnDel = new javax.swing.JButton();
-        BtnEdit = new javax.swing.JButton();
-        BtnAdd = new javax.swing.JButton();
         BtnProduk = new javax.swing.JButton();
+        BtnBarang = new javax.swing.JButton();
         Bottompanel = new javax.swing.JPanel();
         CardPanel = new javax.swing.JPanel();
         CardTabelProduk = new javax.swing.JPanel();
         ScrollTabelProduk = new javax.swing.JScrollPane();
         TabelProduk = new javax.swing.JTable();
+        navbarProduk = new javax.swing.JPanel();
+        navbarContainerP = new javax.swing.JPanel();
+        BtnAddP = new javax.swing.JButton();
+        BtnEditP = new javax.swing.JButton();
+        BtnDelP = new javax.swing.JButton();
+        BtnLogoutP = new javax.swing.JButton();
         CardTabelBarang = new javax.swing.JPanel();
+        navbarBarang = new javax.swing.JPanel();
+        navbarContainerB = new javax.swing.JPanel();
+        BtnAddB = new javax.swing.JButton();
+        BtnEditB = new javax.swing.JButton();
+        BtnDelB = new javax.swing.JButton();
+        BtnLogoutB = new javax.swing.JButton();
         ScrollTabelBarang = new javax.swing.JScrollPane();
         TabelBarang = new javax.swing.JTable();
 
@@ -74,59 +86,10 @@ CardPanel.add(CardTabelProduk, "card2");
         textadm.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
         header.add(textadm, java.awt.BorderLayout.WEST);
 
-        BtnPanel.setMinimumSize(new java.awt.Dimension(415, 30));
+        BtnPanel.setMinimumSize(new java.awt.Dimension(215, 30));
         BtnPanel.setOpaque(false);
-        BtnPanel.setPreferredSize(new java.awt.Dimension(415, 30));
+        BtnPanel.setPreferredSize(new java.awt.Dimension(215, 30));
         BtnPanel.setLayout(new java.awt.GridBagLayout());
-
-        BtnDel.setBackground(new java.awt.Color(0, 0, 0));
-        BtnDel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        BtnDel.setForeground(new java.awt.Color(255, 255, 255));
-        BtnDel.setText("Hapus");
-        BtnDel.setMinimumSize(new java.awt.Dimension(85, 30));
-        BtnDel.setPreferredSize(new java.awt.Dimension(85, 30));
-        BtnDel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnDelActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        BtnPanel.add(BtnDel, gridBagConstraints);
-
-        BtnEdit.setBackground(new java.awt.Color(0, 0, 0));
-        BtnEdit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        BtnEdit.setForeground(new java.awt.Color(255, 255, 255));
-        BtnEdit.setText("Edit");
-        BtnEdit.setMinimumSize(new java.awt.Dimension(85, 30));
-        BtnEdit.setPreferredSize(new java.awt.Dimension(85, 30));
-        BtnEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnEditActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
-        BtnPanel.add(BtnEdit, gridBagConstraints);
-
-        BtnAdd.setBackground(new java.awt.Color(0, 0, 0));
-        BtnAdd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        BtnAdd.setForeground(new java.awt.Color(255, 255, 255));
-        BtnAdd.setText("Tambah");
-        BtnAdd.setMinimumSize(new java.awt.Dimension(85, 30));
-        BtnAdd.setPreferredSize(new java.awt.Dimension(85, 30));
-        BtnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAddActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        BtnPanel.add(BtnAdd, gridBagConstraints);
 
         BtnProduk.setBackground(new java.awt.Color(0, 0, 0));
         BtnProduk.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -140,11 +103,27 @@ CardPanel.add(CardTabelProduk, "card2");
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        BtnPanel.add(BtnProduk, gridBagConstraints);
+
+        BtnBarang.setBackground(new java.awt.Color(0, 0, 0));
+        BtnBarang.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BtnBarang.setForeground(new java.awt.Color(255, 255, 255));
+        BtnBarang.setText("Barang");
+        BtnBarang.setMinimumSize(new java.awt.Dimension(85, 30));
+        BtnBarang.setPreferredSize(new java.awt.Dimension(85, 30));
+        BtnBarang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBarangActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-        BtnPanel.add(BtnProduk, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        BtnPanel.add(BtnBarang, gridBagConstraints);
 
         header.add(BtnPanel, java.awt.BorderLayout.EAST);
 
@@ -193,7 +172,7 @@ CardPanel.add(CardTabelProduk, "card2");
                 {null, null, null, null}
             },
             new String [] {
-                "Id_Produk", "Nama_Produk", "Kategori", "Stok"
+                "Id_Produk", "Nama_Produk", "Material_Produk", "Stok"
             }
         ) {
             Class[] types = new Class [] {
@@ -211,11 +190,165 @@ CardPanel.add(CardTabelProduk, "card2");
 
         CardTabelProduk.add(ScrollTabelProduk, java.awt.BorderLayout.CENTER);
 
+        navbarProduk.setMinimumSize(new java.awt.Dimension(800, 75));
+        navbarProduk.setPreferredSize(new java.awt.Dimension(500, 75));
+        navbarProduk.setLayout(new java.awt.BorderLayout());
+
+        navbarContainerP.setLayout(new java.awt.GridBagLayout());
+
+        BtnAddP.setBackground(new java.awt.Color(0, 0, 0));
+        BtnAddP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BtnAddP.setForeground(new java.awt.Color(255, 255, 255));
+        BtnAddP.setText("Tambah");
+        BtnAddP.setMinimumSize(new java.awt.Dimension(85, 30));
+        BtnAddP.setPreferredSize(new java.awt.Dimension(85, 30));
+        BtnAddP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAddPActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        navbarContainerP.add(BtnAddP, gridBagConstraints);
+
+        BtnEditP.setBackground(new java.awt.Color(0, 0, 0));
+        BtnEditP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BtnEditP.setForeground(new java.awt.Color(255, 255, 255));
+        BtnEditP.setText("Edit");
+        BtnEditP.setMinimumSize(new java.awt.Dimension(85, 30));
+        BtnEditP.setPreferredSize(new java.awt.Dimension(85, 30));
+        BtnEditP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEditPActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        navbarContainerP.add(BtnEditP, gridBagConstraints);
+
+        BtnDelP.setBackground(new java.awt.Color(0, 0, 0));
+        BtnDelP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BtnDelP.setForeground(new java.awt.Color(255, 255, 255));
+        BtnDelP.setText("Hapus");
+        BtnDelP.setMinimumSize(new java.awt.Dimension(85, 30));
+        BtnDelP.setPreferredSize(new java.awt.Dimension(85, 30));
+        BtnDelP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDelPActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        navbarContainerP.add(BtnDelP, gridBagConstraints);
+
+        BtnLogoutP.setBackground(new java.awt.Color(0, 0, 0));
+        BtnLogoutP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BtnLogoutP.setForeground(new java.awt.Color(255, 255, 255));
+        BtnLogoutP.setText("Keluar");
+        BtnLogoutP.setMinimumSize(new java.awt.Dimension(85, 30));
+        BtnLogoutP.setPreferredSize(new java.awt.Dimension(85, 30));
+        BtnLogoutP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnLogoutPActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        navbarContainerP.add(BtnLogoutP, gridBagConstraints);
+
+        navbarProduk.add(navbarContainerP, java.awt.BorderLayout.EAST);
+
+        CardTabelProduk.add(navbarProduk, java.awt.BorderLayout.SOUTH);
+
         CardPanel.add(CardTabelProduk, "card2");
 
         CardTabelBarang.setMinimumSize(new java.awt.Dimension(800, 425));
         CardTabelBarang.setPreferredSize(new java.awt.Dimension(800, 425));
         CardTabelBarang.setLayout(new java.awt.BorderLayout());
+
+        navbarBarang.setMinimumSize(new java.awt.Dimension(800, 75));
+        navbarBarang.setPreferredSize(new java.awt.Dimension(500, 75));
+        navbarBarang.setLayout(new java.awt.BorderLayout());
+
+        navbarContainerB.setLayout(new java.awt.GridBagLayout());
+
+        BtnAddB.setBackground(new java.awt.Color(0, 0, 0));
+        BtnAddB.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BtnAddB.setForeground(new java.awt.Color(255, 255, 255));
+        BtnAddB.setText("Tambah");
+        BtnAddB.setMinimumSize(new java.awt.Dimension(85, 30));
+        BtnAddB.setPreferredSize(new java.awt.Dimension(85, 30));
+        BtnAddB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAddBActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        navbarContainerB.add(BtnAddB, gridBagConstraints);
+
+        BtnEditB.setBackground(new java.awt.Color(0, 0, 0));
+        BtnEditB.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BtnEditB.setForeground(new java.awt.Color(255, 255, 255));
+        BtnEditB.setText("Edit");
+        BtnEditB.setMinimumSize(new java.awt.Dimension(85, 30));
+        BtnEditB.setPreferredSize(new java.awt.Dimension(85, 30));
+        BtnEditB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEditBActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        navbarContainerB.add(BtnEditB, gridBagConstraints);
+
+        BtnDelB.setBackground(new java.awt.Color(0, 0, 0));
+        BtnDelB.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BtnDelB.setForeground(new java.awt.Color(255, 255, 255));
+        BtnDelB.setText("Hapus");
+        BtnDelB.setMinimumSize(new java.awt.Dimension(85, 30));
+        BtnDelB.setPreferredSize(new java.awt.Dimension(85, 30));
+        BtnDelB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDelBActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        navbarContainerB.add(BtnDelB, gridBagConstraints);
+
+        BtnLogoutB.setBackground(new java.awt.Color(0, 0, 0));
+        BtnLogoutB.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BtnLogoutB.setForeground(new java.awt.Color(255, 255, 255));
+        BtnLogoutB.setText("Keluar");
+        BtnLogoutB.setMinimumSize(new java.awt.Dimension(85, 30));
+        BtnLogoutB.setPreferredSize(new java.awt.Dimension(85, 30));
+        BtnLogoutB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnLogoutBActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        navbarContainerB.add(BtnLogoutB, gridBagConstraints);
+
+        navbarBarang.add(navbarContainerB, java.awt.BorderLayout.EAST);
+
+        CardTabelBarang.add(navbarBarang, java.awt.BorderLayout.SOUTH);
 
         ScrollTabelBarang.setMinimumSize(new java.awt.Dimension(800, 425));
         ScrollTabelBarang.setPreferredSize(new java.awt.Dimension(800, 425));
@@ -270,7 +403,7 @@ CardPanel.add(CardTabelProduk, "card2");
 
         CardPanel.add(CardTabelBarang, "card1");
 
-        Bottompanel.add(CardPanel, java.awt.BorderLayout.PAGE_START);
+        Bottompanel.add(CardPanel, java.awt.BorderLayout.CENTER);
 
         bg.add(Bottompanel, java.awt.BorderLayout.CENTER);
 
@@ -279,7 +412,7 @@ CardPanel.add(CardTabelProduk, "card2");
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDelActionPerformed
+    private void BtnDelBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDelBActionPerformed
         // TODO add your handling code here:
          int selectedRow = TabelBarang.getSelectedRow();
 
@@ -293,9 +426,9 @@ CardPanel.add(CardTabelProduk, "card2");
         DefaultTableModel model = (DefaultTableModel) TabelBarang.getModel();
         model.removeRow(selectedRow);
     }
-    }//GEN-LAST:event_BtnDelActionPerformed
+    }//GEN-LAST:event_BtnDelBActionPerformed
 
-    private void BtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddActionPerformed
+    private void BtnAddBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddBActionPerformed
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) TabelBarang.getModel();
 
@@ -329,9 +462,9 @@ CardPanel.add(CardTabelProduk, "card2");
 
     // Tambahkan ke tabel
     model.addRow(new Object[]{kode, nama, minStok, maksStok, stok, order, vendor, tanggal});
-    }//GEN-LAST:event_BtnAddActionPerformed
+    }//GEN-LAST:event_BtnAddBActionPerformed
 
-    private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditActionPerformed
+    private void BtnEditBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditBActionPerformed
         // TODO add your handling code here:
         int selectedRow = TabelBarang.getSelectedRow();
 
@@ -375,13 +508,107 @@ CardPanel.add(CardTabelProduk, "card2");
     model.setValueAt(order, selectedRow, 6);
     model.setValueAt(vendor, selectedRow, 7);
     model.setValueAt(tanggal, selectedRow, 8);
-    }//GEN-LAST:event_BtnEditActionPerformed
+    }//GEN-LAST:event_BtnEditBActionPerformed
 
     private void BtnProdukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnProdukActionPerformed
         // TODO add your handling code here:
-        CardLayout cl = (CardLayout) Bottompanel.getLayout();
-    cl.show(Bottompanel, "card2");
+        CardTabelProduk.setVisible(true);
+        CardTabelBarang.setVisible(false);
     }//GEN-LAST:event_BtnProdukActionPerformed
+
+    private void BtnBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBarangActionPerformed
+        // TODO add your handling code here:
+        CardTabelProduk.setVisible(false);
+        CardTabelBarang.setVisible(true);
+    }//GEN-LAST:event_BtnBarangActionPerformed
+
+    private void BtnAddPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddPActionPerformed
+        // TODO add your handling code here:
+        String kodeProduk = JOptionPane.showInputDialog(this, "Masukkan Kode Produk:");
+    if (kodeProduk == null || kodeProduk.trim().isEmpty()) return;
+
+    // Input dialog untuk Nama Produk
+    String namaProduk = JOptionPane.showInputDialog(this, "Masukkan Nama Produk:");
+    if (namaProduk == null || namaProduk.trim().isEmpty()) return;
+    
+    // Material Produk dengan pemisah baris baru (Enter)
+    String materialProduk = JOptionPane.showInputDialog(this, "Masukkan Material Produk:");
+    if (materialProduk == null || materialProduk.trim().isEmpty()) return;
+
+    // Input dialog untuk Stok Produk
+    String stok = JOptionPane.showInputDialog(this, "Masukkan Stok Produk:");
+    if (stok == null || stok.trim().isEmpty()) return;
+
+    // Menambahkan produk baru ke dalam tabel
+    DefaultTableModel model = (DefaultTableModel) TabelProduk.getModel();
+    model.addRow(new Object[]{kodeProduk, namaProduk, materialProduk, stok});
+    }//GEN-LAST:event_BtnAddPActionPerformed
+
+    private void BtnEditPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditPActionPerformed
+        // TODO add your handling code here:
+          int selectedRow = TabelProduk.getSelectedRow();
+    
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, "Pilih baris yang ingin diedit.", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    DefaultTableModel model = (DefaultTableModel) TabelProduk.getModel();
+    
+    // Ambil data yang ada pada baris yang dipilih
+    String kodeProduk = (String) model.getValueAt(selectedRow, 0);
+    String namaProduk = (String) model.getValueAt(selectedRow, 1);
+    String materialProduk = (String) model.getValueAt(selectedRow, 2);  // Ambil material_produk yang ada
+    String stok = (String) model.getValueAt(selectedRow, 3);
+
+    // Dialog edit per kolom
+    kodeProduk = JOptionPane.showInputDialog(this, "Edit Kode Produk:", kodeProduk);
+    namaProduk = JOptionPane.showInputDialog(this, "Edit Nama Produk:", namaProduk);
+    materialProduk = JOptionPane.showInputDialog(this, "Edit Material Produk:", materialProduk);
+    stok = JOptionPane.showInputDialog(this, "Edit Stok Produk:", stok);
+
+    // Update nilai produk pada tabel
+    model.setValueAt(kodeProduk, selectedRow, 0);
+    model.setValueAt(namaProduk, selectedRow, 1);
+    model.setValueAt(materialProduk, selectedRow, 2);  // Update material_produk
+    model.setValueAt(stok, selectedRow, 3);
+    }//GEN-LAST:event_BtnEditPActionPerformed
+
+    private void BtnDelPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDelPActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = TabelProduk.getSelectedRow();
+
+    // Cek jika tidak ada baris yang dipilih
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, "Pilih baris yang ingin dihapus.", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    // Konfirmasi penghapusan data
+    int konfirmasi = JOptionPane.showConfirmDialog(this, "Apakah Anda yakin ingin menghapus data ini?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+    
+    // Jika konfirmasi "YES", hapus baris yang dipilih
+    if (konfirmasi == JOptionPane.YES_OPTION) {
+        DefaultTableModel model = (DefaultTableModel) TabelProduk.getModel();
+        model.removeRow(selectedRow);  // Menghapus baris yang dipilih
+    }
+    }//GEN-LAST:event_BtnDelPActionPerformed
+
+    private void BtnLogoutPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLogoutPActionPerformed
+        // TODO add your handling code here:
+         int konfirmasi = JOptionPane.showConfirmDialog(this, "Apakah Anda yakin ingin keluar?", "Konfirmasi Logout", JOptionPane.YES_NO_OPTION);
+    if (konfirmasi == JOptionPane.YES_OPTION) {
+        System.exit(0);  // Keluar dari aplikasi
+    }
+    }//GEN-LAST:event_BtnLogoutPActionPerformed
+
+    private void BtnLogoutBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLogoutBActionPerformed
+        // TODO add your handling code here:
+         int konfirmasi = JOptionPane.showConfirmDialog(this, "Apakah Anda yakin ingin keluar?", "Konfirmasi Logout", JOptionPane.YES_NO_OPTION);
+    if (konfirmasi == JOptionPane.YES_OPTION) {
+        System.exit(0);  // Keluar dari aplikasi
+    }
+    }//GEN-LAST:event_BtnLogoutBActionPerformed
 
     /**
      * @param args the command line arguments
@@ -421,9 +648,15 @@ CardPanel.add(CardTabelProduk, "card2");
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Bottompanel;
-    private javax.swing.JButton BtnAdd;
-    private javax.swing.JButton BtnDel;
-    private javax.swing.JButton BtnEdit;
+    private javax.swing.JButton BtnAddB;
+    private javax.swing.JButton BtnAddP;
+    private javax.swing.JButton BtnBarang;
+    private javax.swing.JButton BtnDelB;
+    private javax.swing.JButton BtnDelP;
+    private javax.swing.JButton BtnEditB;
+    private javax.swing.JButton BtnEditP;
+    private javax.swing.JButton BtnLogoutB;
+    private javax.swing.JButton BtnLogoutP;
     private javax.swing.JPanel BtnPanel;
     private javax.swing.JButton BtnProduk;
     private javax.swing.JPanel CardPanel;
@@ -435,6 +668,10 @@ CardPanel.add(CardTabelProduk, "card2");
     private javax.swing.JTable TabelProduk;
     private javax.swing.JPanel bg;
     private javax.swing.JPanel header;
+    private javax.swing.JPanel navbarBarang;
+    private javax.swing.JPanel navbarContainerB;
+    private javax.swing.JPanel navbarContainerP;
+    private javax.swing.JPanel navbarProduk;
     private javax.swing.JLabel textadm;
     // End of variables declaration//GEN-END:variables
 }
