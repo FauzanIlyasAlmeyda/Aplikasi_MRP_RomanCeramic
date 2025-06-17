@@ -15,10 +15,8 @@ public class databaseConnection {
     public static Connection getConnection() {
         if (connection == null) {
             try {
-                // ✅ Load driver JDBC secara eksplisit
+                
                 Class.forName("com.mysql.cj.jdbc.Driver");
-
-                // ✅ Lakukan koneksi
                 connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             } catch (ClassNotFoundException e) {
                 System.err.println("Driver JDBC tidak ditemukan: " + e.getMessage());

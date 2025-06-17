@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class materialCRUD {
+public class MaterialCRUD {
     private Connection conn = databaseConnection.getConnection();
 
     

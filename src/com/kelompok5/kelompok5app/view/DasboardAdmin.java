@@ -49,12 +49,12 @@ CardPanel.add(CardTabelProduk, "card2");
         BtnProduk = new javax.swing.JButton();
         Bottompanel = new javax.swing.JPanel();
         CardPanel = new javax.swing.JPanel();
-        CardTabelProduk = new javax.swing.JPanel();
-        ScrollTabelProduk = new javax.swing.JScrollPane();
-        TabelProduk = new javax.swing.JTable();
         CardTabelBarang = new javax.swing.JPanel();
         ScrollTabelBarang = new javax.swing.JScrollPane();
         TabelBarang = new javax.swing.JTable();
+        CardTabelProduk = new javax.swing.JPanel();
+        ScrollTabelProduk = new javax.swing.JScrollPane();
+        TabelProduk = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 500));
@@ -157,62 +157,6 @@ CardPanel.add(CardTabelProduk, "card2");
         CardPanel.setPreferredSize(new java.awt.Dimension(800, 425));
         CardPanel.setLayout(new java.awt.CardLayout());
 
-        CardTabelProduk.setMinimumSize(new java.awt.Dimension(800, 425));
-        CardTabelProduk.setPreferredSize(new java.awt.Dimension(800, 425));
-        CardTabelProduk.setLayout(new java.awt.BorderLayout());
-
-        ScrollTabelProduk.setMinimumSize(new java.awt.Dimension(800, 425));
-        ScrollTabelProduk.setPreferredSize(new java.awt.Dimension(800, 425));
-
-        TabelProduk.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Id_Produk", "Nama_Produk", "Kategori", "Stok"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        TabelProduk.setMinimumSize(new java.awt.Dimension(800, 425));
-        TabelProduk.setPreferredSize(new java.awt.Dimension(800, 425));
-        TabelProduk.setShowGrid(true);
-        ScrollTabelProduk.setViewportView(TabelProduk);
-
-        CardTabelProduk.add(ScrollTabelProduk, java.awt.BorderLayout.CENTER);
-
-        CardPanel.add(CardTabelProduk, "card2");
-
         CardTabelBarang.setMinimumSize(new java.awt.Dimension(800, 425));
         CardTabelBarang.setPreferredSize(new java.awt.Dimension(800, 425));
         CardTabelBarang.setLayout(new java.awt.BorderLayout());
@@ -269,6 +213,62 @@ CardPanel.add(CardTabelProduk, "card2");
         CardTabelBarang.add(ScrollTabelBarang, java.awt.BorderLayout.CENTER);
 
         CardPanel.add(CardTabelBarang, "card1");
+
+        CardTabelProduk.setMinimumSize(new java.awt.Dimension(800, 425));
+        CardTabelProduk.setPreferredSize(new java.awt.Dimension(800, 425));
+        CardTabelProduk.setLayout(new java.awt.BorderLayout());
+
+        ScrollTabelProduk.setMinimumSize(new java.awt.Dimension(800, 425));
+        ScrollTabelProduk.setPreferredSize(new java.awt.Dimension(800, 425));
+
+        TabelProduk.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Id_Produk", "Nama_Produk", "Kategori", "Stok"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        TabelProduk.setMinimumSize(new java.awt.Dimension(800, 425));
+        TabelProduk.setPreferredSize(new java.awt.Dimension(800, 425));
+        TabelProduk.setShowGrid(true);
+        ScrollTabelProduk.setViewportView(TabelProduk);
+
+        CardTabelProduk.add(ScrollTabelProduk, java.awt.BorderLayout.CENTER);
+
+        CardPanel.add(CardTabelProduk, "card2");
 
         Bottompanel.add(CardPanel, java.awt.BorderLayout.PAGE_START);
 
