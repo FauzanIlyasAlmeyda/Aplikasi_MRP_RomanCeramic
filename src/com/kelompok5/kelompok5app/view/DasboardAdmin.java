@@ -58,6 +58,7 @@ CardPanel.add(CardTabelProduk, "card2");
         BtnEditP = new javax.swing.JButton();
         BtnDelP = new javax.swing.JButton();
         BtnLogoutP = new javax.swing.JButton();
+        txtJudulProduk = new javax.swing.JLabel();
         CardTabelBarang = new javax.swing.JPanel();
         navbarBarang = new javax.swing.JPanel();
         navbarContainerB = new javax.swing.JPanel();
@@ -65,6 +66,7 @@ CardPanel.add(CardTabelProduk, "card2");
         BtnEditB = new javax.swing.JButton();
         BtnDelB = new javax.swing.JButton();
         BtnLogoutB = new javax.swing.JButton();
+        txtJudulBarang = new javax.swing.JLabel();
         ScrollTabelBarang = new javax.swing.JScrollPane();
         TabelBarang = new javax.swing.JTable();
 
@@ -266,6 +268,11 @@ CardPanel.add(CardTabelProduk, "card2");
 
         navbarProduk.add(navbarContainerP, java.awt.BorderLayout.EAST);
 
+        txtJudulProduk.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        txtJudulProduk.setText("Tabel Produk");
+        txtJudulProduk.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
+        navbarProduk.add(txtJudulProduk, java.awt.BorderLayout.CENTER);
+
         CardTabelProduk.add(navbarProduk, java.awt.BorderLayout.SOUTH);
 
         CardPanel.add(CardTabelProduk, "card2");
@@ -347,6 +354,11 @@ CardPanel.add(CardTabelProduk, "card2");
         navbarContainerB.add(BtnLogoutB, gridBagConstraints);
 
         navbarBarang.add(navbarContainerB, java.awt.BorderLayout.EAST);
+
+        txtJudulBarang.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        txtJudulBarang.setText("Tabel Barang");
+        txtJudulBarang.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
+        navbarBarang.add(txtJudulBarang, java.awt.BorderLayout.CENTER);
 
         CardTabelBarang.add(navbarBarang, java.awt.BorderLayout.SOUTH);
 
@@ -596,18 +608,18 @@ CardPanel.add(CardTabelProduk, "card2");
 
     private void BtnLogoutPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLogoutPActionPerformed
         // TODO add your handling code here:
-         int konfirmasi = JOptionPane.showConfirmDialog(this, "Apakah Anda yakin ingin keluar?", "Konfirmasi Logout", JOptionPane.YES_NO_OPTION);
-    if (konfirmasi == JOptionPane.YES_OPTION) {
-        System.exit(0);  // Keluar dari aplikasi
-    }
+         new login().setVisible(true);
+
+        // Menutup frame DetailLaporanBarang
+        dispose();
     }//GEN-LAST:event_BtnLogoutPActionPerformed
 
     private void BtnLogoutBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLogoutBActionPerformed
         // TODO add your handling code here:
-         int konfirmasi = JOptionPane.showConfirmDialog(this, "Apakah Anda yakin ingin keluar?", "Konfirmasi Logout", JOptionPane.YES_NO_OPTION);
-    if (konfirmasi == JOptionPane.YES_OPTION) {
-        System.exit(0);  // Keluar dari aplikasi
-    }
+         new login().setVisible(true);
+
+        // Menutup frame DetailLaporanBarang
+        dispose();
     }//GEN-LAST:event_BtnLogoutBActionPerformed
 
     /**
@@ -673,5 +685,7 @@ CardPanel.add(CardTabelProduk, "card2");
     private javax.swing.JPanel navbarContainerP;
     private javax.swing.JPanel navbarProduk;
     private javax.swing.JLabel textadm;
+    private javax.swing.JLabel txtJudulBarang;
+    private javax.swing.JLabel txtJudulProduk;
     // End of variables declaration//GEN-END:variables
 }

@@ -8,12 +8,12 @@ package com.kelompok5.kelompok5app.view;
  *
  * @author LENOVO
  */
-public class DashboardDepartemenGudang extends javax.swing.JFrame {
+public class DetailLaporanBarang extends javax.swing.JFrame {
 
     /**
-     * Creates new form DashboardDepartemenGudang
+     * Creates new form DetailLaporanBarang
      */
-    public DashboardDepartemenGudang() {
+    public DetailLaporanBarang() {
         initComponents();
     }
 
@@ -29,70 +29,54 @@ public class DashboardDepartemenGudang extends javax.swing.JFrame {
 
         bg = new javax.swing.JPanel();
         Header = new javax.swing.JPanel();
-        txtDg = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        BtnDashboardLaporan = new javax.swing.JButton();
-        BtnListLaporan = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        PanelKembali = new javax.swing.JPanel();
+        BtnKembaliDetailLaporan = new javax.swing.JButton();
         BottomPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TabelBarang = new javax.swing.JTable();
+        TabelDetailLaporan = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         bg.setBackground(new java.awt.Color(153, 153, 153));
         bg.setLayout(new java.awt.BorderLayout());
 
-        Header.setMinimumSize(new java.awt.Dimension(800, 75));
         Header.setOpaque(false);
         Header.setPreferredSize(new java.awt.Dimension(800, 75));
         Header.setLayout(new java.awt.BorderLayout());
 
-        txtDg.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        txtDg.setText("Departemen Gudang");
-        txtDg.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
-        Header.add(txtDg, java.awt.BorderLayout.CENTER);
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setText("Detail Laporan");
+        jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
+        Header.add(jLabel1, java.awt.BorderLayout.CENTER);
 
-        jPanel1.setOpaque(false);
-        jPanel1.setPreferredSize(new java.awt.Dimension(315, 75));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        PanelKembali.setOpaque(false);
+        PanelKembali.setPreferredSize(new java.awt.Dimension(150, 75));
+        PanelKembali.setLayout(new java.awt.GridBagLayout());
 
-        BtnDashboardLaporan.setBackground(new java.awt.Color(0, 0, 0));
-        BtnDashboardLaporan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        BtnDashboardLaporan.setForeground(new java.awt.Color(255, 255, 255));
-        BtnDashboardLaporan.setText("Dashboard Laporan");
-        BtnDashboardLaporan.addActionListener(new java.awt.event.ActionListener() {
+        BtnKembaliDetailLaporan.setBackground(new java.awt.Color(0, 0, 0));
+        BtnKembaliDetailLaporan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BtnKembaliDetailLaporan.setForeground(new java.awt.Color(255, 255, 255));
+        BtnKembaliDetailLaporan.setText("Kembali");
+        BtnKembaliDetailLaporan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnDashboardLaporanActionPerformed(evt);
+                BtnKembaliDetailLaporanActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
-        jPanel1.add(BtnDashboardLaporan, gridBagConstraints);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        PanelKembali.add(BtnKembaliDetailLaporan, gridBagConstraints);
 
-        BtnListLaporan.setBackground(new java.awt.Color(0, 0, 0));
-        BtnListLaporan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        BtnListLaporan.setForeground(new java.awt.Color(255, 255, 255));
-        BtnListLaporan.setText("List Laporan");
-        BtnListLaporan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnListLaporanActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
-        jPanel1.add(BtnListLaporan, gridBagConstraints);
-
-        Header.add(jPanel1, java.awt.BorderLayout.EAST);
+        Header.add(PanelKembali, java.awt.BorderLayout.EAST);
 
         bg.add(Header, java.awt.BorderLayout.PAGE_START);
 
         BottomPanel.setOpaque(false);
         BottomPanel.setLayout(new java.awt.BorderLayout());
 
-        jScrollPane1.setMinimumSize(new java.awt.Dimension(800, 425));
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(800, 425));
-
-        TabelBarang.setModel(new javax.swing.table.DefaultTableModel(
+        TabelDetailLaporan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -121,19 +105,19 @@ public class DashboardDepartemenGudang extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Kode Barang", "Nama Barang", "Kategori", "Min Stok", "Maks Stok", "Stok", "Order", "Vendor", "Tanggal Diperbarui"
+                "Kode Barang", "Nama Barang", "Min Stok", "Maks Stok", "Stok Tersedia", "Order", "Vendor", "Waktu", "Penambahan Stok"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        TabelBarang.setShowGrid(true);
-        jScrollPane1.setViewportView(TabelBarang);
+        TabelDetailLaporan.setShowGrid(true);
+        jScrollPane1.setViewportView(TabelDetailLaporan);
 
         BottomPanel.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -144,21 +128,13 @@ public class DashboardDepartemenGudang extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnDashboardLaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDashboardLaporanActionPerformed
+    private void BtnKembaliDetailLaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKembaliDetailLaporanActionPerformed
         // TODO add your handling code here:
         new DashboardLaporan().setVisible(true);
-        
-        // Menutup frame DashboardDepartemenGudang
-        dispose();
-    }//GEN-LAST:event_BtnDashboardLaporanActionPerformed
-
-    private void BtnListLaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnListLaporanActionPerformed
-        // TODO add your handling code here:
-        new Laporan().setVisible(true);
-        
-        // Menutup frame DashboardDepartemenGudang
-        dispose();
-    }//GEN-LAST:event_BtnListLaporanActionPerformed
+    
+    // Menutup frame DetailLaporanBarang
+    dispose();
+    }//GEN-LAST:event_BtnKembaliDetailLaporanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,33 +153,32 @@ public class DashboardDepartemenGudang extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DashboardDepartemenGudang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetailLaporanBarang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DashboardDepartemenGudang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetailLaporanBarang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DashboardDepartemenGudang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetailLaporanBarang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DashboardDepartemenGudang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetailLaporanBarang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DashboardDepartemenGudang().setVisible(true);
+                new DetailLaporanBarang().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BottomPanel;
-    private javax.swing.JButton BtnDashboardLaporan;
-    private javax.swing.JButton BtnListLaporan;
+    private javax.swing.JButton BtnKembaliDetailLaporan;
     private javax.swing.JPanel Header;
-    private javax.swing.JTable TabelBarang;
+    private javax.swing.JPanel PanelKembali;
+    private javax.swing.JTable TabelDetailLaporan;
     private javax.swing.JPanel bg;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel txtDg;
     // End of variables declaration//GEN-END:variables
 }
