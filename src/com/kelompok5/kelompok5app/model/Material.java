@@ -1,8 +1,12 @@
 package com.kelompok5.kelompok5app.model;
-public class Material extends Barang { 
-    public Material(String id, String nama, String kategori, int min_stock, int max_stock, int stock, String vendor, double harga) {
-        super(id, nama, kategori, min_stock, max_stock,stock, vendor, harga);}
 
+public class Material extends Barang { 
+
+    public Material(String id, String nama, String kategori, int min_stock, int max_stock, int stock, int order, String vendor, double harga, String updated_at) {
+        super(id, nama, kategori, min_stock, max_stock, stock, order, vendor, harga, updated_at);
+    }
+
+    // Jika ingin tetap menggunakan getter/setter sendiri (meskipun bisa langsung pakai milik Barang)
     public String getId() {
         return id;
     }
@@ -14,6 +18,7 @@ public class Material extends Barang {
     public String getName() {
         return nama;
     }
+
     public void setName(String nama) {
         this.nama = nama;
     }
@@ -50,6 +55,14 @@ public class Material extends Barang {
         this.stock = stock;
     }
 
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
+    }
+
     public String getVendor() {
         return vendor;
     }
@@ -66,5 +79,11 @@ public class Material extends Barang {
         this.harga = harga;
     }
 
+    public String getUpdated_at() {
+        return updated_at;
+    }
 
+    public void setUpdated_at(String updated_at) {
+        this.updated_at = updated_at;
+    }
 }

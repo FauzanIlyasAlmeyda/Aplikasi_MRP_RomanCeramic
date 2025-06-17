@@ -68,4 +68,14 @@ public class ProduksiController {
         produk.setStock(produk.getStock() + jumlahProduksi);
         return produkDAO.update(produk);
     }
+
+    public boolean deleteProduk(String idProduk) {
+    // Hapus semua materialproduk dulu (BOM-nya)
+    boolean hapusBahan = materialDAO.deleteByProdukId(idProduk);
+    // Hapus produk-nya
+    boolean hapusProduk = produkDAO.delete(idProduk);
+
+    return hapusProduk;
+}
+
 }

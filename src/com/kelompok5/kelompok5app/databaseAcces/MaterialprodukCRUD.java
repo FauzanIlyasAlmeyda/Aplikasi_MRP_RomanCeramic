@@ -15,7 +15,6 @@ public class MaterialprodukCRUD {
         conn = databaseConnection.getConnection();
     }
 
-    
     public String generateId() {
         String prefix = "MP";
         String sql = "SELECT id FROM produk_material ORDER BY id DESC LIMIT 1";
@@ -33,9 +32,8 @@ public class MaterialprodukCRUD {
         return prefix + "001";
     }
 
-    
     public boolean insert(Materialproduk mp) {
-        String sql = "INSERT INTO produk_material (id, produk_id, material_id, jumlah) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO produk_material (id, id_produk, id_material, jumlah) VALUES (?, ?, ?, ?)";
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, mp.getId());
@@ -50,45 +48,48 @@ public class MaterialprodukCRUD {
         }
     }
 
-    
     public List<Materialproduk> getByProdukId(String idProduk) {
-        List<Materialproduk> list = new ArrayList<>();
-        String sql = "SELECT pm.id, pm.jumlah, m.* FROM produk_material pm " +
-                "JOIN material m ON pm.material_id = m.id " +
-                "WHERE pm.produk_id = ?";
-        try {
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, idProduk);
-            ResultSet rs = stmt.executeQuery();
+    List<Materialproduk> list = new ArrayList<>();
+    String sql = "SELECT pm.id as pm_id, pm.jumlah, b.* FROM produk_material pm " +
+                 "JOIN barang b ON pm.id_material = b.id " +
+                 "WHERE pm.id_produk = ? AND b.kategori = 'material'";
+    try {
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, idProduk);
+        ResultSet rs = stmt.executeQuery();
 
-            while (rs.next()) {
-                Material m = new Material(
-                        rs.getString("id"),
-                        rs.getString("name"),
-                        rs.getString("kategori"),
-                        rs.getInt("min_stock"),
-                        rs.getInt("max_stock"),
-                        rs.getInt("stock"),
-                        rs.getString("vendor"),
-                        rs.getDouble("harga"));
+        while (rs.next()) {
+            Material m = new Material(
+                rs.getString("id"),
+                rs.getString("nama"),
+                rs.getString("kategori"),
+                rs.getInt("min_stock"),
+                rs.getInt("max_stock"),
+                rs.getInt("stock"),
+                rs.getInt("order"),
+                rs.getString("vendor"),
+                rs.getDouble("harga"),
+                rs.getString("updated_at")
+            );
 
-                Materialproduk mp = new Materialproduk(
-                        rs.getString("pm.id"),
-                        idProduk,
-                        m,
-                        rs.getInt("jumlah"));
+            Materialproduk mp = new Materialproduk(
+                rs.getString("pm_id"),
+                idProduk,
+                m,
+                rs.getInt("jumlah")
+            );
 
-                list.add(mp);
-            }
-        } catch (SQLException e) {
-            System.err.println("Gagal ambil BOM produk: " + e.getMessage());
+            list.add(mp);
         }
-        return list;
+    } catch (SQLException e) {
+        System.err.println("Gagal ambil BOM produk: " + e.getMessage());
     }
+    return list;
+}
 
-    
+
     public boolean deleteByProdukId(String idProduk) {
-        String sql = "DELETE FROM produk_material WHERE produk_id = ?";
+        String sql = "DELETE FROM produk_material WHERE id_produk = ?";
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, idProduk);
@@ -100,7 +101,7 @@ public class MaterialprodukCRUD {
     }
 
     public boolean deleteByProdukAndMaterial(String idProduk, String idMaterial) {
-        String sql = "DELETE FROM produk_material WHERE produk_id = ? AND material_id = ?";
+        String sql = "DELETE FROM produk_material WHERE id_produk = ? AND id_material = ?";
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, idProduk);
@@ -111,5 +112,4 @@ public class MaterialprodukCRUD {
             return false;
         }
     }
-
 }

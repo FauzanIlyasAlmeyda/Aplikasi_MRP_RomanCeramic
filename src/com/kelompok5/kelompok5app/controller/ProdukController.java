@@ -18,7 +18,6 @@ public class ProdukController {
         materialDao = new MaterialprodukCRUD();
     }
 
-    
     public void tampilkanSemuaProduk(JTable tabel) {
         DefaultTableModel model = (DefaultTableModel) tabel.getModel();
         model.setRowCount(0); // Kosongkan tabel
@@ -26,31 +25,29 @@ public class ProdukController {
         List<Produk> list = produkDao.getAll();
 
         for (Produk p : list) {
-            // Format material jadi satu string
+            // Gabungkan daftar material
             StringBuilder bahan = new StringBuilder();
             for (Materialproduk mp : p.getMaterialList()) {
-                bahan.append(mp.getMaterial().getNama())
-                    .append(" x").append(mp.getJumlah())
-                    .append(", ");
-            }
-            // Hapus koma terakhir
-            if (bahan.length() > 0) {
-                bahan.setLength(bahan.length() - 2);
+                if (mp.getMaterial() != null) {
+                    bahan.append(mp.getMaterial().getNama())
+                        .append(" x").append(mp.getJumlah())
+                        .append(", ");
+                }
             }
 
-            model.addRow(new Object[]{
+            if (bahan.length() > 0) {
+                bahan.setLength(bahan.length() - 2); // hapus koma terakhir
+            }
+
+            model.addRow(new Object[] {
                 p.getId(),
                 p.getName(),
-                p.getStock(),
-                "-",  // Min stock jika ingin ditambahkan
-                "-",  // Max stock jika ingin ditambahkan
-                bahan.toString(),
-                "-"  // Tanggal jika ingin ditambahkan
+                bahan.toString(), // Kolom material
+                p.getStock()      // Kolom stok
             });
         }
     }
 
-    
     public boolean insertProduk(Produk p) {
         boolean produkBerhasil = produkDao.insert(p);
         if (!produkBerhasil) return false;

@@ -169,7 +169,7 @@ public class DashboardLaporan extends javax.swing.JFrame {
 
     private void BtnKembaliDDLaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKembaliDDLaporanActionPerformed
         // TODO add your handling code here:
-        new DashboardLaporan().setVisible(true);
+        new DashboardDepartemenGudang().setVisible(true);
 
         // Menutup frame DetailLaporanBarang
         dispose();
