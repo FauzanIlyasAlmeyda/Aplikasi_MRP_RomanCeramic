@@ -11,8 +11,8 @@ public class MaterialCRUD {
     private Connection conn = databaseConnection.getConnection();
 
     public void tambahMaterial(Material m) {
-        String sql = "INSERT INTO barang (id, nama, kategori, min_stock, max_stock, stock, `order`, vendor, harga, updated_at) " +
-                     "VALUES (?, ?, 'material', ?, ?, ?, ?, ?, ?, NOW())";
+        String sql = "INSERT INTO barang (id, nama, kategori, min_stock, max_stock, stock, `order`, vendor, updated_at) " +
+                     "VALUES (?, ?, 'material', ?, ?, ?, ?, NOW())";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, m.getId());
             stmt.setString(2, m.getName());
@@ -21,7 +21,6 @@ public class MaterialCRUD {
             stmt.setInt(5, m.getStock());
             stmt.setInt(6, m.getOrder());
             stmt.setString(7, m.getVendor());
-            stmt.setDouble(8, m.getHarga());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,7 +41,6 @@ public class MaterialCRUD {
                         rs.getInt("stock"),
                         rs.getInt("order"),
                         rs.getString("vendor"),
-                        rs.getDouble("harga"),
                         rs.getString("updated_at")
                 );
                 list.add(m);
@@ -54,7 +52,7 @@ public class MaterialCRUD {
     }
 
     public void updateMaterial(Material m) {
-        String sql = "UPDATE barang SET nama=?, min_stock=?, max_stock=?, stock=?, `order`=?, vendor=?, harga=?, updated_at=NOW() " +
+        String sql = "UPDATE barang SET nama=?, min_stock=?, max_stock=?, stock=?, `order`=?, vendor=?, updated_at=NOW() " +
                      "WHERE id=? AND kategori='material'";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, m.getName());
@@ -63,8 +61,7 @@ public class MaterialCRUD {
             stmt.setInt(4, m.getStock());
             stmt.setInt(5, m.getOrder());
             stmt.setString(6, m.getVendor());
-            stmt.setDouble(7, m.getHarga());
-            stmt.setString(8, m.getId());
+            stmt.setString(7, m.getId());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

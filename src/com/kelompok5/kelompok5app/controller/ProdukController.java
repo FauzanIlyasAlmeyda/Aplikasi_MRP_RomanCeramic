@@ -65,4 +65,9 @@ public class ProdukController {
     public String generateId() {
         return produkDao.generateId();
     }
+    
+    public boolean updateProduk(Produk p) {
+    return produkDao.update(p);
+}
+
 }

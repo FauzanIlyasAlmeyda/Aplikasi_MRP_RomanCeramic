@@ -68,7 +68,6 @@ public class MaterialprodukCRUD {
                 rs.getInt("stock"),
                 rs.getInt("order"),
                 rs.getString("vendor"),
-                rs.getDouble("harga"),
                 rs.getString("updated_at")
             );
 

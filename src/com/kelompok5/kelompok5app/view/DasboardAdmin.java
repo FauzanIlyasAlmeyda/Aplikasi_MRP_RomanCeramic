@@ -478,10 +478,9 @@ public class DasboardAdmin extends javax.swing.JFrame {
         String stokStr = JOptionPane.showInputDialog(this, "Masukkan Stok:");
         String orderStr = JOptionPane.showInputDialog(this, "Masukkan Order:");
         String vendor = JOptionPane.showInputDialog(this, "Masukkan Vendor:");
-        String hargaStr = JOptionPane.showInputDialog(this, "Masukkan Harga:");
 
         if (nama == null || kategori == null || minStokStr == null || maxStokStr == null
-                || stokStr == null || orderStr == null || vendor == null || hargaStr == null) {
+                || stokStr == null || orderStr == null || vendor == null) {
             JOptionPane.showMessageDialog(this, "Semua kolom wajib diisi.", "Peringatan", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -491,18 +490,17 @@ public class DasboardAdmin extends javax.swing.JFrame {
             int maxStok = Integer.parseInt(maxStokStr);
             int stok = Integer.parseInt(stokStr);
             int order = Integer.parseInt(orderStr);
-            double harga = Double.parseDouble(hargaStr);
 
             // Generate ID berdasarkan kategori
             String id = barangController.generateId(kategori);
             boolean sukses = false;
 
             if (kategori.equalsIgnoreCase("material")) {
-                Material materialBaru = new Material(id, nama, kategori, minStok, maxStok, stok, order, vendor, harga,
+                Material materialBaru = new Material(id, nama, kategori, minStok, maxStok, stok, order, vendor,
                         null);
                 sukses = barangController.insertBarang(materialBaru);
             } else {
-                Barang barangBaru = new Barang(id, nama, kategori, minStok, maxStok, stok, order, vendor, harga, null);
+                Barang barangBaru = new Barang(id, nama, kategori, minStok, maxStok, stok, order, vendor, null);
                 sukses = barangController.insertBarang(barangBaru);
             }
 
@@ -540,7 +538,6 @@ public class DasboardAdmin extends javax.swing.JFrame {
         String stokStr = model.getValueAt(selectedRow, 5).toString();
         String orderStr = model.getValueAt(selectedRow, 6).toString();
         String vendor = (String) model.getValueAt(selectedRow, 7);
-        String hargaStr = JOptionPane.showInputDialog(this, "Harga (kosongkan jika tidak ingin mengubah)", "0");
 
         // Dialog input baru
         nama = JOptionPane.showInputDialog(this, "Edit Nama Barang:", nama);
@@ -556,9 +553,8 @@ public class DasboardAdmin extends javax.swing.JFrame {
             int maksStok = Integer.parseInt(maksStokStr);
             int stok = Integer.parseInt(stokStr);
             int order = Integer.parseInt(orderStr);
-            double harga = (hargaStr == null || hargaStr.isEmpty()) ? 0.0 : Double.parseDouble(hargaStr);
 
-            Barang barangBaru = new Barang(id, nama, kategori, minStok, maksStok, stok, order, vendor, harga, null);
+            Barang barangBaru = new Barang(id, nama, kategori, minStok, maksStok, stok, order, vendor, null);
             boolean sukses = barangController.updateBarang(barangBaru);
 
             if (sukses) {
@@ -592,19 +588,22 @@ public class DasboardAdmin extends javax.swing.JFrame {
 
             // 2. Input nama produk
             String nama = JOptionPane.showInputDialog(this, "Masukkan Nama Produk:");
-            if (nama == null || nama.trim().isEmpty())
+            if (nama == null || nama.trim().isEmpty()) {
                 return;
+            }
 
             // 3. Input stok
             String stokStr = JOptionPane.showInputDialog(this, "Masukkan Stok Produk:");
-            if (stokStr == null || stokStr.trim().isEmpty())
+            if (stokStr == null || stokStr.trim().isEmpty()) {
                 return;
+            }
             int stok = Integer.parseInt(stokStr.trim());
 
             // 4. Input material: Format "MTR001:3, MTR002:5"
             String materialInput = JOptionPane.showInputDialog(this, "Masukkan Material (format: ID:jumlah, ...):");
-            if (materialInput == null || materialInput.trim().isEmpty())
+            if (materialInput == null || materialInput.trim().isEmpty()) {
                 return;
+            }
 
             List<Materialproduk> materialList = new ArrayList<>();
 
@@ -619,7 +618,7 @@ public class DasboardAdmin extends javax.swing.JFrame {
                 int jumlah = Integer.parseInt(parts[1].trim());
 
                 // Buat Material dari ID (hanya ID saja yang dibutuhkan di relasi)
-                Material m = new Material(idMaterial, "", "", 0, 0, 0, 0, "", 0, "");
+                Material m = new Material(idMaterial, "", "", 0, 0, 0, 0, "", "");
 
                 // Buat relasi produk-material
                 Materialproduk mp = new Materialproduk(id + "-" + idMaterial, id, m, jumlah);
@@ -645,8 +644,7 @@ public class DasboardAdmin extends javax.swing.JFrame {
         }
     }// GEN-LAST:event_BtnAddPActionPerformed
 
-    private void BtnEditPActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_BtnEditPActionPerformed
-        // TODO add your handling code here:
+    private void BtnEditPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditPActionPerformed
         int selectedRow = TabelProduk.getSelectedRow();
 
         if (selectedRow == -1) {
@@ -657,24 +655,76 @@ public class DasboardAdmin extends javax.swing.JFrame {
 
         DefaultTableModel model = (DefaultTableModel) TabelProduk.getModel();
 
-        // Ambil data yang ada pada baris yang dipilih
-        String kodeProduk = (String) model.getValueAt(selectedRow, 0);
-        String namaProduk = (String) model.getValueAt(selectedRow, 1);
-        String materialProduk = (String) model.getValueAt(selectedRow, 2); // Ambil material_produk yang ada
-        String stok = (String) model.getValueAt(selectedRow, 3);
+        // Ambil data yang ada
+        String idProduk = (String) model.getValueAt(selectedRow, 0);
+        String namaLama = (String) model.getValueAt(selectedRow, 1);
+        int stokLama = Integer.parseInt(model.getValueAt(selectedRow, 3).toString());
 
-        // Dialog edit per kolom
-        kodeProduk = JOptionPane.showInputDialog(this, "Edit Kode Produk:", kodeProduk);
-        namaProduk = JOptionPane.showInputDialog(this, "Edit Nama Produk:", namaProduk);
-        materialProduk = JOptionPane.showInputDialog(this, "Edit Material Produk:", materialProduk);
-        stok = JOptionPane.showInputDialog(this, "Edit Stok Produk:", stok);
+        // Input baru dari pengguna
+        String namaBaru = JOptionPane.showInputDialog(this, "Edit Nama Produk:", namaLama);
+        if (namaBaru == null || namaBaru.trim().isEmpty()) {
+            return;
+        }
 
-        // Update nilai produk pada tabel
-        model.setValueAt(kodeProduk, selectedRow, 0);
-        model.setValueAt(namaProduk, selectedRow, 1);
-        model.setValueAt(materialProduk, selectedRow, 2); // Update material_produk
-        model.setValueAt(stok, selectedRow, 3);
-    }// GEN-LAST:event_BtnEditPActionPerformed
+        String stokStr = JOptionPane.showInputDialog(this, "Edit Stok Produk:", String.valueOf(stokLama));
+        if (stokStr == null || stokStr.trim().isEmpty()) {
+            return;
+        }
+        int stokBaru = Integer.parseInt(stokStr.trim());
+
+        String inputMaterialBaru = JOptionPane.showInputDialog(this, "Edit Material (format ID:jumlah, ...):");
+        if (inputMaterialBaru == null || inputMaterialBaru.trim().isEmpty()) {
+            return;
+        }
+
+        try {
+            List<Materialproduk> materialBaruList = new ArrayList<>();
+            String[] materialSplit = inputMaterialBaru.split(",");
+
+            for (String item : materialSplit) {
+                String[] part = item.trim().split(":");
+                if (part.length != 2) {
+                    throw new Exception("Format material tidak valid: " + item);
+                }
+
+                String idMaterial = part[0].trim();
+                int jumlah = Integer.parseInt(part[1].trim());
+
+                Material m = new Material(idMaterial, "", "", 0, 0, 0, 0, "", "");
+                Materialproduk mp = new Materialproduk(idProduk + "-" + idMaterial, idProduk, m, jumlah);
+                materialBaruList.add(mp);
+            }
+
+            // Update produk
+            Produk produk = new Produk(idProduk, namaBaru, stokBaru, "produk", materialBaruList);
+
+            // Langkah: hapus relasi lama → simpan relasi baru → update produk
+            com.kelompok5.kelompok5app.databaseAcces.MaterialprodukCRUD mpDAO = new com.kelompok5.kelompok5app.databaseAcces.MaterialprodukCRUD();
+            mpDAO.deleteByProdukId(idProduk); // hapus BOM lama
+
+            boolean suksesSimpan = true;
+            for (Materialproduk mp : materialBaruList) {
+                if (!mpDAO.insert(mp)) {
+                    suksesSimpan = false;
+                    break;
+                }
+            }
+
+            boolean updateProduk = produkController.updateProduk(produk); // kamu harus buat ini kalau belum
+
+            if (suksesSimpan && updateProduk) {
+                JOptionPane.showMessageDialog(this, "Produk berhasil diperbarui.");
+                produkController.tampilkanSemuaProduk(TabelProduk);
+            } else {
+                JOptionPane.showMessageDialog(this, "Gagal memperbarui produk.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Stok dan jumlah material harus angka!", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_BtnEditPActionPerformed
 
     private void BtnDelPActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_BtnDelPActionPerformed
         int selectedRow = TabelProduk.getSelectedRow();

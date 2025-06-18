@@ -9,11 +9,10 @@ public class Barang {
     protected int stock;
     protected int order;
     protected String vendor;
-    protected double harga;
     protected String updated_at;
 
     // Constructor lengkap
-    public Barang(String id, String nama, String kategori, int min_stock, int max_stock, int stock, int order, String vendor, double harga, String updated_at) {
+    public Barang(String id, String nama, String kategori, int min_stock, int max_stock, int stock, int order, String vendor, String updated_at) {
         this.id = id;
         this.nama = nama;
         this.kategori = kategori;
@@ -22,7 +21,6 @@ public class Barang {
         this.stock = stock;
         this.order = order;
         this.vendor = vendor;
-        this.harga = harga;
         this.updated_at = updated_at;
     }
 
@@ -97,14 +95,6 @@ public class Barang {
 
     public void setVendor(String vendor) {
         this.vendor = vendor;
-    }
-
-    public double getHarga() {
-        return harga;
-    }
-
-    public void setHarga(double harga) {
-        this.harga = harga;
     }
 
     public String getUpdated_at() {

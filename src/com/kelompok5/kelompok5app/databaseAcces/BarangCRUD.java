@@ -55,7 +55,7 @@ public class BarangCRUD {
     }
 
     public boolean insert(Barang b) {
-        String sql = "INSERT INTO barang (id, nama, kategori, min_stock, max_stock, stock, `order`, vendor, harga, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO barang (id, nama, kategori, min_stock, max_stock, stock, `order`, vendor, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, b.getId());
@@ -66,8 +66,7 @@ public class BarangCRUD {
             stmt.setInt(6, b.getStock());
             stmt.setInt(7, b.getOrder());
             stmt.setString(8, b.getVendor());
-            stmt.setDouble(9, b.getHarga());
-            stmt.setString(10, b.getUpdated_at()); // atau bisa pakai new Timestamp(System.currentTimeMillis())
+            stmt.setString(9, b.getUpdated_at()); // atau bisa pakai new Timestamp(System.currentTimeMillis())
 
             stmt.executeUpdate();
             return true;
@@ -94,7 +93,6 @@ public class BarangCRUD {
                         rs.getInt("stock"),
                         rs.getInt("order"),
                         rs.getString("vendor"),
-                        rs.getDouble("harga"),
                         rs.getString("updated_at"));
                 list.add(b);
             }
@@ -120,7 +118,6 @@ public class BarangCRUD {
                         rs.getInt("stock"),
                         rs.getInt("order"),
                         rs.getString("vendor"),
-                        rs.getDouble("harga"),
                         rs.getString("updated_at"));
                 list.add(b);
             }
@@ -131,7 +128,7 @@ public class BarangCRUD {
     }
 
     public boolean update(Barang b) {
-        String sql = "UPDATE barang SET nama=?, kategori=?, min_stock=?, max_stock=?, stock=?, `order`=?, vendor=?, harga=? WHERE id=?";
+        String sql = "UPDATE barang SET nama=?, kategori=?, min_stock=?, max_stock=?, stock=?, `order`=?, vendor=? WHERE id=?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, b.getNama());
             stmt.setString(2, b.getKategori());
@@ -139,9 +136,8 @@ public class BarangCRUD {
             stmt.setInt(4, b.getMax_stock());
             stmt.setInt(5, b.getStock());
             stmt.setInt(6, b.getOrder());
-            stmt.setString(7, b.getVendor());
-            stmt.setDouble(8, b.getHarga());
-            stmt.setString(9, b.getId());
+            stmt.setString(7, b.getVendor());           
+            stmt.setString(8, b.getId());
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             System.err.println("Gagal update barang: " + e.getMessage());
