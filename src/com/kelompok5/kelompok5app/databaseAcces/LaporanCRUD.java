@@ -94,10 +94,10 @@ public class LaporanCRUD {
         String sql = "SELECT id, nama_laporan, waktu_dibuat FROM laporan ORDER BY id DESC";
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
-                list.add(new String[]{
-                    String.valueOf(rs.getInt("id")),
-                    rs.getString("nama_laporan"),
-                    rs.getString("waktu_dibuat")
+                list.add(new String[] {
+                        String.valueOf(rs.getInt("id")),
+                        rs.getString("nama_laporan"),
+                        rs.getString("waktu_dibuat")
                 });
             }
         } catch (SQLException e) {
@@ -115,16 +115,15 @@ public class LaporanCRUD {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 LaporanPengadaan lp = new LaporanPengadaan(
-                    rs.getString("id_barang"),
-                    rs.getString("nama_barang"),
-                    rs.getInt("stok_min"),
-                    rs.getInt("stok_max"),
-                    rs.getInt("stok"),
-                    rs.getInt("order_barang"),
-                    rs.getString("vendor"),
-                    rs.getString("waktu_order_terakhir"),
-                    rs.getInt("penambahan")
-                );
+                        rs.getString("id_barang"),
+                        rs.getString("nama_barang"),
+                        rs.getInt("stok_min"),
+                        rs.getInt("stok_max"),
+                        rs.getInt("stok"),
+                        rs.getInt("order_barang"),
+                        rs.getString("vendor"),
+                        rs.getString("waktu_order_terakhir"),
+                        rs.getInt("penambahan"));
                 list.add(lp);
             }
         } catch (SQLException e) {
@@ -132,4 +131,20 @@ public class LaporanCRUD {
         }
         return list;
     }
+
+    public String getNamaLaporanById(int idLaporan) {
+        String nama = "";
+        String sql = "SELECT nama_laporan FROM laporan WHERE id = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, idLaporan);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                nama = rs.getString("nama_laporan");
+            }
+        } catch (SQLException e) {
+            System.err.println("❌ Gagal ambil nama laporan: " + e.getMessage());
+        }
+        return nama;
+    }
+
 }
