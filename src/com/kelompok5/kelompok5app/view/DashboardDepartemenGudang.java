@@ -4,17 +4,24 @@
  */
 package com.kelompok5.kelompok5app.view;
 
+import com.kelompok5.kelompok5app.controller.BarangController;
+
 /**
  *
  * @author LENOVO
  */
 public class DashboardDepartemenGudang extends javax.swing.JFrame {
 
+    private BarangController barangController;
+
     /**
      * Creates new form DashboardDepartemenGudang
      */
     public DashboardDepartemenGudang() {
         initComponents();
+        barangController = new BarangController();
+        barangController.tampilkanSemuaBarang(TabelBarang); // Ini akan isi datanya
+
     }
 
     /**
@@ -121,7 +128,8 @@ public class DashboardDepartemenGudang extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Kode Barang", "Nama Barang", "Kategori", "Min Stok", "Maks Stok", "Stok", "Order", "Vendor", "Tanggal Diperbarui"
+                "Kode Barang", "Nama Barang", "Kategori", "Min Stok", "Maks Stok", "Stok", "Order", "Vendor",
+                "Tanggal Diperbarui"
             }
         ) {
             Class[] types = new Class [] {
@@ -147,7 +155,7 @@ public class DashboardDepartemenGudang extends javax.swing.JFrame {
     private void BtnDashboardLaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDashboardLaporanActionPerformed
         // TODO add your handling code here:
         new DashboardLaporan().setVisible(true);
-        
+
         // Menutup frame DashboardDepartemenGudang
         dispose();
     }//GEN-LAST:event_BtnDashboardLaporanActionPerformed
@@ -155,7 +163,7 @@ public class DashboardDepartemenGudang extends javax.swing.JFrame {
     private void BtnListLaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnListLaporanActionPerformed
         // TODO add your handling code here:
         new Laporan().setVisible(true);
-        
+
         // Menutup frame DashboardDepartemenGudang
         dispose();
     }//GEN-LAST:event_BtnListLaporanActionPerformed

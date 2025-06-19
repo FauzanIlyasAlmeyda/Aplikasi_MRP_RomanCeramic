@@ -14,7 +14,7 @@ public class LaporanCRUD {
         conn = databaseConnection.getConnection();
     }
 
-    ///Generate nama laporan
+    // Generate nama laporan otomatis
     public String generateNamaLaporan() {
         String base = "Laporan";
         String sql = "SELECT COUNT(*) AS total FROM laporan";
@@ -29,15 +29,15 @@ public class LaporanCRUD {
         return base + "1";
     }
 
-    //Insert laporan + detail
+    // Simpan laporan dan detailnya
     public boolean simpanLaporan(List<LaporanPengadaan> detailLaporan) {
         String sqlLaporan = "INSERT INTO laporan (nama_laporan) VALUES (?)";
-        String sqlDetail = "INSERT INTO laporan_detail (id_laporan, id_barang, nama_barang, stok_min, stok, stok_max, vendor, waktu_order_terakhir, penambahan) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlDetail = "INSERT INTO laporan_detail (id_laporan, id_barang, nama_barang, stok_min, stok_max, stok, order_barang, vendor, waktu_order_terakhir, penambahan) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             conn.setAutoCommit(false); // mulai transaksi
 
-            // Insert laporan
+            // Insert ke tabel laporan
             String namaLaporan = generateNamaLaporan();
             PreparedStatement stmtLaporan = conn.prepareStatement(sqlLaporan, Statement.RETURN_GENERATED_KEYS);
             stmtLaporan.setString(1, namaLaporan);
@@ -52,23 +52,24 @@ public class LaporanCRUD {
                 return false;
             }
 
-            // Insert detail laporan
+            // Insert ke detail laporan
             PreparedStatement stmtDetail = conn.prepareStatement(sqlDetail);
             for (LaporanPengadaan lp : detailLaporan) {
                 stmtDetail.setInt(1, idLaporan);
                 stmtDetail.setString(2, lp.getId());
                 stmtDetail.setString(3, lp.getNamaBarang());
                 stmtDetail.setInt(4, lp.getStokMin());
-                stmtDetail.setInt(5, lp.getStokTersedia());
-                stmtDetail.setInt(6, lp.getStokMax());
-                stmtDetail.setString(7, lp.getVendor());
-                stmtDetail.setString(8, lp.getWaktuOrderTerakhir());
-                stmtDetail.setInt(9, lp.getPenambahan());
+                stmtDetail.setInt(5, lp.getStokMax());
+                stmtDetail.setInt(6, lp.getStokTersedia());
+                stmtDetail.setInt(7, lp.getOrder());
+                stmtDetail.setString(8, lp.getVendor());
+                stmtDetail.setString(9, lp.getWaktuOrderTerakhir());
+                stmtDetail.setInt(10, lp.getPenambahan());
                 stmtDetail.addBatch();
             }
             stmtDetail.executeBatch();
 
-            conn.commit(); 
+            conn.commit();
             return true;
         } catch (SQLException e) {
             try {
@@ -87,16 +88,16 @@ public class LaporanCRUD {
         }
     }
 
-    // (untuk List Laporan)
+    // Ambil daftar laporan (hanya header)
     public List<String[]> getListLaporan() {
         List<String[]> list = new ArrayList<>();
         String sql = "SELECT id, nama_laporan, waktu_dibuat FROM laporan ORDER BY id DESC";
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 list.add(new String[]{
-                        String.valueOf(rs.getInt("id")),
-                        rs.getString("nama_laporan"),
-                        rs.getString("waktu_dibuat")
+                    String.valueOf(rs.getInt("id")),
+                    rs.getString("nama_laporan"),
+                    rs.getString("waktu_dibuat")
                 });
             }
         } catch (SQLException e) {
@@ -105,7 +106,7 @@ public class LaporanCRUD {
         return list;
     }
 
-    // detail laporan berdasarkan ID
+    // Ambil detail laporan berdasarkan ID laporan
     public List<LaporanPengadaan> getDetailLaporan(int idLaporan) {
         List<LaporanPengadaan> list = new ArrayList<>();
         String sql = "SELECT * FROM laporan_detail WHERE id_laporan = ?";
@@ -114,14 +115,15 @@ public class LaporanCRUD {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 LaporanPengadaan lp = new LaporanPengadaan(
-                        rs.getString("id_barang"),
-                        rs.getString("nama_barang"),
-                        rs.getInt("stok_min"),
-                        rs.getInt("stok"),
-                        rs.getInt("stok_max"),
-                        rs.getString("vendor"),
-                        rs.getString("waktu_order_terakhir"),
-                        rs.getInt("penambahan")
+                    rs.getString("id_barang"),
+                    rs.getString("nama_barang"),
+                    rs.getInt("stok_min"),
+                    rs.getInt("stok_max"),
+                    rs.getInt("stok"),
+                    rs.getInt("order_barang"),
+                    rs.getString("vendor"),
+                    rs.getString("waktu_order_terakhir"),
+                    rs.getInt("penambahan")
                 );
                 list.add(lp);
             }

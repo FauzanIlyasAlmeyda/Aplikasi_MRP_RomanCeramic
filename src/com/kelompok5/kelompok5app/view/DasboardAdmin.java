@@ -476,11 +476,10 @@ public class DasboardAdmin extends javax.swing.JFrame {
         String minStokStr = JOptionPane.showInputDialog(this, "Masukkan Min Stok:");
         String maxStokStr = JOptionPane.showInputDialog(this, "Masukkan Maks Stok:");
         String stokStr = JOptionPane.showInputDialog(this, "Masukkan Stok:");
-        String orderStr = JOptionPane.showInputDialog(this, "Masukkan Order:");
         String vendor = JOptionPane.showInputDialog(this, "Masukkan Vendor:");
 
         if (nama == null || kategori == null || minStokStr == null || maxStokStr == null
-                || stokStr == null || orderStr == null || vendor == null) {
+                || stokStr == null || vendor == null) {
             JOptionPane.showMessageDialog(this, "Semua kolom wajib diisi.", "Peringatan", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -489,7 +488,7 @@ public class DasboardAdmin extends javax.swing.JFrame {
             int minStok = Integer.parseInt(minStokStr);
             int maxStok = Integer.parseInt(maxStokStr);
             int stok = Integer.parseInt(stokStr);
-            int order = Integer.parseInt(orderStr);
+            int order = 0;
 
             // Generate ID berdasarkan kategori
             String id = barangController.generateId(kategori);
@@ -545,7 +544,6 @@ public class DasboardAdmin extends javax.swing.JFrame {
         minStokStr = JOptionPane.showInputDialog(this, "Edit Min Stok:", minStokStr);
         maksStokStr = JOptionPane.showInputDialog(this, "Edit Maks Stok:", maksStokStr);
         stokStr = JOptionPane.showInputDialog(this, "Edit Stok:", stokStr);
-        orderStr = JOptionPane.showInputDialog(this, "Edit Order:", orderStr);
         vendor = JOptionPane.showInputDialog(this, "Edit Vendor:", vendor);
 
         try {

@@ -55,7 +55,7 @@ public class BarangCRUD {
     }
 
     public boolean insert(Barang b) {
-        String sql = "INSERT INTO barang (id, nama, kategori, min_stock, max_stock, stock, `order`, vendor, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO barang (id, nama, kategori, min_stock, max_stock, stock, `order`, vendor, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())";
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, b.getId());
@@ -66,13 +66,13 @@ public class BarangCRUD {
             stmt.setInt(6, b.getStock());
             stmt.setInt(7, b.getOrder());
             stmt.setString(8, b.getVendor());
-            stmt.setString(9, b.getUpdated_at()); // atau bisa pakai new Timestamp(System.currentTimeMillis())
+            //stmt.setString(9, b.getUpdated_at()); 
 
             stmt.executeUpdate();
             return true;
         } catch (SQLException e) {
             System.err.println("❌ Gagal insert barang:");
-            e.printStackTrace(); // <--- Tambahkan ini untuk lihat error detail
+            e.printStackTrace(); 
             return false;
         }
     }
@@ -128,7 +128,7 @@ public class BarangCRUD {
     }
 
     public boolean update(Barang b) {
-        String sql = "UPDATE barang SET nama=?, kategori=?, min_stock=?, max_stock=?, stock=?, `order`=?, vendor=? WHERE id=?";
+        String sql = "UPDATE barang SET nama=?, kategori=?, min_stock=?, max_stock=?, stock=?, `order`=?, vendor=?, updated_at = NOW() WHERE id=?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, b.getNama());
             stmt.setString(2, b.getKategori());

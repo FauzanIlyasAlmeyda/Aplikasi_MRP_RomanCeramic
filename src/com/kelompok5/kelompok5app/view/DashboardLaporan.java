@@ -4,17 +4,26 @@
  */
 package com.kelompok5.kelompok5app.view;
 
+import com.kelompok5.kelompok5app.controller.BarangController;
+import com.kelompok5.kelompok5app.controller.LaporanPengadaanController;
+import com.kelompok5.kelompok5app.model.Barang;
+
 /**
  *
  * @author LENOVO
  */
 public class DashboardLaporan extends javax.swing.JFrame {
 
+    private BarangController barangController;
+
     /**
      * Creates new form DashboardLaporan
      */
     public DashboardLaporan() {
         initComponents();
+        LaporanPengadaanController laporanController = new LaporanPengadaanController();
+        laporanController.tampilkanBarangKurangStok(TabelDOLaporanBarang);
+
     }
 
     /**
@@ -150,6 +159,11 @@ public class DashboardLaporan extends javax.swing.JFrame {
         BtnBuatLaporan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         BtnBuatLaporan.setForeground(new java.awt.Color(255, 255, 255));
         BtnBuatLaporan.setText("Buat Laporan");
+        BtnBuatLaporan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBuatLaporanActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -181,8 +195,19 @@ public class DashboardLaporan extends javax.swing.JFrame {
 
         // Menutup frame DetailLaporanBarang
         dispose();
-        
+
     }//GEN-LAST:event_BtnLogoutActionPerformed
+
+    private void BtnBuatLaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuatLaporanActionPerformed
+        LaporanPengadaanController laporanController = new LaporanPengadaanController();
+        boolean sukses = laporanController.simpanLaporanDariDashboard(TabelDOLaporanBarang);
+        if (sukses) {
+            javax.swing.JOptionPane.showMessageDialog(this, "✅ Laporan berhasil dibuat dan data dashboard diperbarui!");
+            laporanController.tampilkanBarangKurangStok(TabelDOLaporanBarang); // refresh tampilan dashboard
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "⚠️ Tidak ada data baru untuk dilaporkan!", "Informasi", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_BtnBuatLaporanActionPerformed
 
     /**
      * @param args the command line arguments

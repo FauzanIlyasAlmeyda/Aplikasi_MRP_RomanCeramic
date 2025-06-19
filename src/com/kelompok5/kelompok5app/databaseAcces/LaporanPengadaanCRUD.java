@@ -15,41 +15,49 @@ public class LaporanPengadaanCRUD {
         conn = databaseConnection.getConnection();
     }
 
-    public List<LaporanPengadaan> getSemuaLaporan() {
+    // ✅ Ambil hanya barang yang BELUM DILAPORKAN
+    public List<LaporanPengadaan> getBarangStokKurangBelumDilaporkan() {
         List<LaporanPengadaan> list = new ArrayList<>();
-        String sql = "SELECT id, nama, min_stock, max_stock, stock, vendor, updated_at FROM barang";
+        String sql = "SELECT id, nama, min_stock, max_stock, stock, `order`, vendor, waktu_butuh_order " +
+                    "FROM barang WHERE stock < min_stock AND sudah_dilaporkan = false";
 
-        try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
-                String id = rs.getString("id");
-                String nama = rs.getString("nama");
-                int stokMin = rs.getInt("min_stock");
-                int stokMax = rs.getInt("max_stock");
-                int stokTersedia = rs.getInt("stock");
-                String vendor = rs.getString("vendor");
-                String waktu = rs.getString("updated_at"); // pastikan kolom ini ada di tabel
+                int penambahan = rs.getInt("max_stock") - rs.getInt("stock");
 
-                // Hitung penambahan jika stok tersedia < stokMin
-                int penambahan = 0;
-                if (stokTersedia < stokMin) {
-                    penambahan = stokMax - stokTersedia;
-                }
-
-                // Buat objek laporan
-                LaporanPengadaan laporan = new LaporanPengadaan(
-                    id, nama, stokMin, stokTersedia, stokMax, vendor, waktu, penambahan
+                LaporanPengadaan lp = new LaporanPengadaan(
+                        rs.getString("id"),
+                        rs.getString("nama"),
+                        null, // kategori tidak dibutuhkan
+                        rs.getInt("min_stock"),
+                        rs.getInt("max_stock"),
+                        rs.getInt("stock"),
+                        rs.getInt("order"),
+                        rs.getString("vendor"),
+                        rs.getString("waktu_butuh_order"),
+                        penambahan
                 );
 
-                list.add(laporan);
+                list.add(lp);
             }
-
         } catch (SQLException e) {
-            System.err.println("Gagal ambil data laporan pengadaan: " + e.getMessage());
+            System.err.println("❌ Gagal ambil barang belum dilaporkan: " + e.getMessage());
         }
 
         return list;
+    }
+
+    // ✅ Menandai barang sudah dilaporkan
+    public void tandaiSudahDilaporkan(List<LaporanPengadaan> list) {
+        String sql = "UPDATE barang SET sudah_dilaporkan = true WHERE id = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            for (LaporanPengadaan lp : list) {
+                stmt.setString(1, lp.getId());
+                stmt.addBatch();
+            }
+            stmt.executeBatch();
+        } catch (SQLException e) {
+            System.err.println("❌ Gagal menandai barang sudah dilaporkan: " + e.getMessage());
+        }
     }
 }
