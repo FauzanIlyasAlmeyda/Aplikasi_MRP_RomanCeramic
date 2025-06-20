@@ -123,6 +123,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="List Laporan"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnListLaporanActionPerformed"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                       <GridBagConstraints gridX="1" gridY="0" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="10" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
@@ -145,7 +148,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
           <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+            <Container class="javax.swing.JScrollPane" name="ScrollTabelProduk">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
@@ -157,19 +160,14 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="TabelBarang">
+                <Component class="javax.swing.JTable" name="TabelProduk">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="9" rowCount="25">
-                        <Column editable="true" title="Kode Barang" type="java.lang.String"/>
-                        <Column editable="true" title="Nama Barang" type="java.lang.String"/>
-                        <Column editable="true" title="Kategori" type="java.lang.String"/>
-                        <Column editable="true" title="Min Stok" type="java.lang.Integer"/>
-                        <Column editable="true" title="Maks Stok" type="java.lang.Integer"/>
+                      <Table columnCount="4" rowCount="25">
+                        <Column editable="true" title="Kode Produk" type="java.lang.String"/>
+                        <Column editable="true" title="Nama Produk" type="java.lang.String"/>
+                        <Column editable="true" title="Material Produk" type="java.lang.String"/>
                         <Column editable="true" title="Stok" type="java.lang.Integer"/>
-                        <Column editable="true" title="Order" type="java.lang.Integer"/>
-                        <Column editable="true" title="Vendor" type="java.lang.String"/>
-                        <Column editable="true" title="Tanggal Diperbarui" type="java.lang.Integer"/>
                       </Table>
                     </Property>
                     <Property name="showGrid" type="boolean" value="true"/>

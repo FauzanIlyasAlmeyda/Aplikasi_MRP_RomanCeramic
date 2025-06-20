@@ -30,19 +30,33 @@ public class Order extends javax.swing.JFrame {
         bg = new javax.swing.JPanel();
         Header = new javax.swing.JPanel();
         txtHeader = new javax.swing.JLabel();
-        fieldPanel = new javax.swing.JPanel();
-        txtFieldbarang = new javax.swing.JTextField();
-        txtFieldProduk = new javax.swing.JTextField();
-        txtProduk = new javax.swing.JLabel();
-        txtBarang = new javax.swing.JLabel();
+        BtnPanel = new javax.swing.JPanel();
+        BtnProduk = new javax.swing.JButton();
+        BtnBarang = new javax.swing.JButton();
         BottomPanel = new javax.swing.JPanel();
-        Navbar = new javax.swing.JPanel();
-        NavbarContainer = new javax.swing.JPanel();
-        BtnPesan = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        CardPanel = new javax.swing.JPanel();
+        CardPanelBRG = new javax.swing.JPanel();
+        navbarBRG = new javax.swing.JPanel();
+        NavbarContainerBRG = new javax.swing.JPanel();
+        BtnPesanBRG = new javax.swing.JButton();
+        PanelSearchBRG = new javax.swing.JPanel();
+        txtFieldBRG = new javax.swing.JTextField();
+        BtnSearchBRG = new javax.swing.JButton();
+        ScrollTabelBRG = new javax.swing.JScrollPane();
+        TabelOrderBRG = new javax.swing.JTable();
+        CardPanelPRD = new javax.swing.JPanel();
+        navbarPRD = new javax.swing.JPanel();
+        NavbarContainerPRD = new javax.swing.JPanel();
+        BtnPesanPRD = new javax.swing.JButton();
+        PanelSearchPRD = new javax.swing.JPanel();
+        txtFieldPRD = new javax.swing.JTextField();
+        BtnSearchPRD = new javax.swing.JButton();
+        ScrollTabelPRD = new javax.swing.JScrollPane();
+        TabelOrderPRD = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(800, 500));
+        setPreferredSize(new java.awt.Dimension(800, 500));
 
         bg.setBackground(new java.awt.Color(153, 153, 153));
         bg.setLayout(new java.awt.BorderLayout());
@@ -56,130 +70,262 @@ public class Order extends javax.swing.JFrame {
         txtHeader.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
         Header.add(txtHeader, java.awt.BorderLayout.CENTER);
 
-        fieldPanel.setOpaque(false);
-        fieldPanel.setPreferredSize(new java.awt.Dimension(400, 75));
-        fieldPanel.setLayout(new java.awt.GridBagLayout());
+        BtnPanel.setMinimumSize(new java.awt.Dimension(215, 30));
+        BtnPanel.setOpaque(false);
+        BtnPanel.setPreferredSize(new java.awt.Dimension(215, 30));
+        BtnPanel.setLayout(new java.awt.GridBagLayout());
 
-        txtFieldbarang.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtFieldbarang.setMinimumSize(new java.awt.Dimension(125, 30));
-        txtFieldbarang.setPreferredSize(new java.awt.Dimension(150, 30));
+        BtnProduk.setBackground(new java.awt.Color(0, 0, 0));
+        BtnProduk.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BtnProduk.setForeground(new java.awt.Color(255, 255, 255));
+        BtnProduk.setText("Produk");
+        BtnProduk.setMinimumSize(new java.awt.Dimension(85, 30));
+        BtnProduk.setPreferredSize(new java.awt.Dimension(85, 30));
+        BtnProduk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnProdukActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 61;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        fieldPanel.add(txtFieldbarang, gridBagConstraints);
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        BtnPanel.add(BtnProduk, gridBagConstraints);
 
-        txtFieldProduk.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtFieldProduk.setMinimumSize(new java.awt.Dimension(125, 30));
-        txtFieldProduk.setPreferredSize(new java.awt.Dimension(150, 30));
-        txtFieldProduk.addActionListener(new java.awt.event.ActionListener() {
+        BtnBarang.setBackground(new java.awt.Color(0, 0, 0));
+        BtnBarang.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BtnBarang.setForeground(new java.awt.Color(255, 255, 255));
+        BtnBarang.setText("Barang");
+        BtnBarang.setMinimumSize(new java.awt.Dimension(85, 30));
+        BtnBarang.setPreferredSize(new java.awt.Dimension(85, 30));
+        BtnBarang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFieldProdukActionPerformed(evt);
+                BtnBarangActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 62;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        fieldPanel.add(txtFieldProduk, gridBagConstraints);
-
-        txtProduk.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        txtProduk.setText("Produk");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        fieldPanel.add(txtProduk, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        BtnPanel.add(BtnBarang, gridBagConstraints);
 
-        txtBarang.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        txtBarang.setText("Barang");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        fieldPanel.add(txtBarang, gridBagConstraints);
-
-        Header.add(fieldPanel, java.awt.BorderLayout.EAST);
+        Header.add(BtnPanel, java.awt.BorderLayout.EAST);
 
         bg.add(Header, java.awt.BorderLayout.PAGE_START);
 
+        BottomPanel.setMinimumSize(new java.awt.Dimension(800, 75));
         BottomPanel.setOpaque(false);
+        BottomPanel.setPreferredSize(new java.awt.Dimension(800, 75));
         BottomPanel.setLayout(new java.awt.BorderLayout());
 
-        Navbar.setOpaque(false);
-        Navbar.setPreferredSize(new java.awt.Dimension(800, 75));
-        Navbar.setLayout(new java.awt.BorderLayout());
+        CardPanel.setMinimumSize(new java.awt.Dimension(800, 425));
+        CardPanel.setOpaque(false);
+        CardPanel.setPreferredSize(new java.awt.Dimension(800, 425));
+        CardPanel.setLayout(new java.awt.CardLayout());
 
-        NavbarContainer.setMinimumSize(new java.awt.Dimension(200, 75));
-        NavbarContainer.setOpaque(false);
-        NavbarContainer.setPreferredSize(new java.awt.Dimension(200, 75));
-        NavbarContainer.setLayout(new java.awt.GridBagLayout());
+        CardPanelBRG.setOpaque(false);
+        CardPanelBRG.setLayout(new java.awt.BorderLayout());
 
-        BtnPesan.setBackground(new java.awt.Color(0, 0, 0));
-        BtnPesan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        BtnPesan.setForeground(new java.awt.Color(255, 255, 255));
-        BtnPesan.setText("Buat Pesanan");
-        BtnPesan.addActionListener(new java.awt.event.ActionListener() {
+        navbarBRG.setOpaque(false);
+        navbarBRG.setLayout(new java.awt.BorderLayout());
+
+        NavbarContainerBRG.setMinimumSize(new java.awt.Dimension(200, 75));
+        NavbarContainerBRG.setOpaque(false);
+        NavbarContainerBRG.setPreferredSize(new java.awt.Dimension(200, 75));
+        NavbarContainerBRG.setLayout(new java.awt.GridBagLayout());
+
+        BtnPesanBRG.setBackground(new java.awt.Color(0, 0, 0));
+        BtnPesanBRG.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BtnPesanBRG.setForeground(new java.awt.Color(255, 255, 255));
+        BtnPesanBRG.setText("Buat Pesanan");
+        BtnPesanBRG.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnPesanActionPerformed(evt);
+                BtnPesanBRGActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        NavbarContainer.add(BtnPesan, gridBagConstraints);
+        NavbarContainerBRG.add(BtnPesanBRG, gridBagConstraints);
 
-        Navbar.add(NavbarContainer, java.awt.BorderLayout.EAST);
+        navbarBRG.add(NavbarContainerBRG, java.awt.BorderLayout.EAST);
 
-        BottomPanel.add(Navbar, java.awt.BorderLayout.PAGE_END);
+        PanelSearchBRG.setMinimumSize(new java.awt.Dimension(200, 75));
+        PanelSearchBRG.setOpaque(false);
+        PanelSearchBRG.setPreferredSize(new java.awt.Dimension(300, 75));
+        PanelSearchBRG.setLayout(new java.awt.GridBagLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        txtFieldBRG.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtFieldBRG.setMinimumSize(new java.awt.Dimension(150, 30));
+        txtFieldBRG.setPreferredSize(new java.awt.Dimension(150, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        PanelSearchBRG.add(txtFieldBRG, gridBagConstraints);
+
+        BtnSearchBRG.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BtnSearchBRG.setText("Cari");
+        BtnSearchBRG.setMinimumSize(new java.awt.Dimension(75, 25));
+        BtnSearchBRG.setPreferredSize(new java.awt.Dimension(75, 25));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        PanelSearchBRG.add(BtnSearchBRG, gridBagConstraints);
+
+        navbarBRG.add(PanelSearchBRG, java.awt.BorderLayout.WEST);
+
+        CardPanelBRG.add(navbarBRG, java.awt.BorderLayout.PAGE_END);
+
+        TabelOrderBRG.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Nama Barang", "Nama Produk", "Stok Barang", "Stok Produk"
+                "Nama Barang", "Stok Tersedia"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jTable1.setShowGrid(true);
-        jScrollPane1.setViewportView(jTable1);
+        TabelOrderBRG.setShowGrid(true);
+        ScrollTabelBRG.setViewportView(TabelOrderBRG);
 
-        BottomPanel.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        CardPanelBRG.add(ScrollTabelBRG, java.awt.BorderLayout.CENTER);
+
+        CardPanel.add(CardPanelBRG, "card2");
+
+        CardPanelPRD.setOpaque(false);
+        CardPanelPRD.setLayout(new java.awt.BorderLayout());
+
+        navbarPRD.setOpaque(false);
+        navbarPRD.setLayout(new java.awt.BorderLayout());
+
+        NavbarContainerPRD.setMinimumSize(new java.awt.Dimension(200, 75));
+        NavbarContainerPRD.setOpaque(false);
+        NavbarContainerPRD.setPreferredSize(new java.awt.Dimension(200, 75));
+        NavbarContainerPRD.setLayout(new java.awt.GridBagLayout());
+
+        BtnPesanPRD.setBackground(new java.awt.Color(0, 0, 0));
+        BtnPesanPRD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BtnPesanPRD.setForeground(new java.awt.Color(255, 255, 255));
+        BtnPesanPRD.setText("Buat Pesanan");
+        BtnPesanPRD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPesanPRDActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        NavbarContainerPRD.add(BtnPesanPRD, gridBagConstraints);
+
+        navbarPRD.add(NavbarContainerPRD, java.awt.BorderLayout.EAST);
+
+        PanelSearchPRD.setMinimumSize(new java.awt.Dimension(200, 75));
+        PanelSearchPRD.setOpaque(false);
+        PanelSearchPRD.setPreferredSize(new java.awt.Dimension(300, 75));
+        PanelSearchPRD.setLayout(new java.awt.GridBagLayout());
+
+        txtFieldPRD.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtFieldPRD.setMinimumSize(new java.awt.Dimension(150, 30));
+        txtFieldPRD.setPreferredSize(new java.awt.Dimension(150, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        PanelSearchPRD.add(txtFieldPRD, gridBagConstraints);
+
+        BtnSearchPRD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BtnSearchPRD.setText("Cari");
+        BtnSearchPRD.setMinimumSize(new java.awt.Dimension(75, 25));
+        BtnSearchPRD.setPreferredSize(new java.awt.Dimension(75, 25));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        PanelSearchPRD.add(BtnSearchPRD, gridBagConstraints);
+
+        navbarPRD.add(PanelSearchPRD, java.awt.BorderLayout.WEST);
+
+        CardPanelPRD.add(navbarPRD, java.awt.BorderLayout.PAGE_END);
+
+        TabelOrderPRD.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Nama Produk", "Stok Tersedia"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        TabelOrderPRD.setShowGrid(true);
+        ScrollTabelPRD.setViewportView(TabelOrderPRD);
+
+        CardPanelPRD.add(ScrollTabelPRD, java.awt.BorderLayout.CENTER);
+
+        CardPanel.add(CardPanelPRD, "card2");
+
+        BottomPanel.add(CardPanel, java.awt.BorderLayout.PAGE_START);
 
         bg.add(BottomPanel, java.awt.BorderLayout.CENTER);
 
@@ -188,13 +334,25 @@ public class Order extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnPesanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPesanActionPerformed
+    private void BtnPesanBRGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPesanBRGActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BtnPesanActionPerformed
+    }//GEN-LAST:event_BtnPesanBRGActionPerformed
 
-    private void txtFieldProdukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldProdukActionPerformed
+    private void BtnProdukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnProdukActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFieldProdukActionPerformed
+        CardPanelBRG.setVisible(false);
+        CardPanelPRD.setVisible(true);
+    }//GEN-LAST:event_BtnProdukActionPerformed
+
+    private void BtnBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBarangActionPerformed
+            // TODO add your handling code here:
+            CardPanelBRG.setVisible(true);
+            CardPanelPRD.setVisible(false);
+    }//GEN-LAST:event_BtnBarangActionPerformed
+
+    private void BtnPesanPRDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPesanPRDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnPesanPRDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,18 +391,30 @@ public class Order extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BottomPanel;
-    private javax.swing.JButton BtnPesan;
+    private javax.swing.JButton BtnBarang;
+    private javax.swing.JPanel BtnPanel;
+    private javax.swing.JButton BtnPesanBRG;
+    private javax.swing.JButton BtnPesanPRD;
+    private javax.swing.JButton BtnProduk;
+    private javax.swing.JButton BtnSearchBRG;
+    private javax.swing.JButton BtnSearchPRD;
+    private javax.swing.JPanel CardPanel;
+    private javax.swing.JPanel CardPanelBRG;
+    private javax.swing.JPanel CardPanelPRD;
     private javax.swing.JPanel Header;
-    private javax.swing.JPanel Navbar;
-    private javax.swing.JPanel NavbarContainer;
+    private javax.swing.JPanel NavbarContainerBRG;
+    private javax.swing.JPanel NavbarContainerPRD;
+    private javax.swing.JPanel PanelSearchBRG;
+    private javax.swing.JPanel PanelSearchPRD;
+    private javax.swing.JScrollPane ScrollTabelBRG;
+    private javax.swing.JScrollPane ScrollTabelPRD;
+    private javax.swing.JTable TabelOrderBRG;
+    private javax.swing.JTable TabelOrderPRD;
     private javax.swing.JPanel bg;
-    private javax.swing.JPanel fieldPanel;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JLabel txtBarang;
-    private javax.swing.JTextField txtFieldProduk;
-    private javax.swing.JTextField txtFieldbarang;
+    private javax.swing.JPanel navbarBRG;
+    private javax.swing.JPanel navbarPRD;
+    private javax.swing.JTextField txtFieldBRG;
+    private javax.swing.JTextField txtFieldPRD;
     private javax.swing.JLabel txtHeader;
-    private javax.swing.JLabel txtProduk;
     // End of variables declaration//GEN-END:variables
 }

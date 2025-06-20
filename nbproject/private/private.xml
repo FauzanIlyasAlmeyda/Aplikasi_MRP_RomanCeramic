@@ -3,27 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/file%20uzen/data%20kuliah/projekKuliah1/java/migrasi/kelpompok5app/src/com/kelompok5/kelompok5app/databaseAcces/MaterialCRUD.java</file>
-            <file>file:/D:/file%20uzen/data%20kuliah/projekKuliah1/java/migrasi/kelpompok5app/src/com/kelompok5/kelompok5app/databaseAcces/BarangCRUD.java</file>
-            <file>file:/D:/file%20uzen/data%20kuliah/projekKuliah1/java/migrasi/kelpompok5app/src/com/kelompok5/kelompok5app/databaseAcces/MaterialprodukCRUD.java</file>
-            <file>file:/D:/file%20uzen/data%20kuliah/projekKuliah1/java/migrasi/kelpompok5app/src/com/kelompok5/kelompok5app/config/databaseConnection.java</file>
-            <file>file:/D:/file%20uzen/data%20kuliah/projekKuliah1/java/migrasi/kelpompok5app/src/com/kelompok5/kelompok5app/view/DasboardAdmin.java</file>
-            <file>file:/D:/file%20uzen/data%20kuliah/projekKuliah1/java/migrasi/kelpompok5app/src/com/kelompok5/kelompok5app/view/DashboardDepartemenGudang.java</file>
-            <file>file:/D:/file%20uzen/data%20kuliah/projekKuliah1/java/migrasi/kelpompok5app/src/com/kelompok5/kelompok5app/view/DashboardLaporan.java</file>
-            <file>file:/D:/file%20uzen/data%20kuliah/projekKuliah1/java/migrasi/kelpompok5app/src/com/kelompok5/kelompok5app/view/DashboardPPIC.java</file>
-            <file>file:/D:/file%20uzen/data%20kuliah/projekKuliah1/java/migrasi/kelpompok5app/src/com/kelompok5/kelompok5app/view/DetailLaporanBarang.java</file>
-            <file>file:/D:/file%20uzen/data%20kuliah/projekKuliah1/java/migrasi/kelpompok5app/src/com/kelompok5/kelompok5app/view/Laporan.java</file>
-            <file>file:/D:/file%20uzen/data%20kuliah/projekKuliah1/java/migrasi/kelpompok5app/src/com/kelompok5/kelompok5app/controller/BarangController.java</file>
-            <file>file:/D:/file%20uzen/data%20kuliah/projekKuliah1/java/migrasi/kelpompok5app/src/com/kelompok5/kelompok5app/model/Produk.java</file>
-            <file>file:/D:/file%20uzen/data%20kuliah/projekKuliah1/java/migrasi/kelpompok5app/src/com/kelompok5/kelompok5app/databaseAcces/ProdukCRUD.java</file>
-            <file>file:/D:/file%20uzen/data%20kuliah/projekKuliah1/java/migrasi/kelpompok5app/src/com/kelompok5/kelompok5app/controller/ProdukController.java</file>
-            <file>file:/D:/file%20uzen/data%20kuliah/projekKuliah1/java/migrasi/kelpompok5app/src/com/kelompok5/kelompok5app/model/Barang.java</file>
-            <file>file:/D:/file%20uzen/data%20kuliah/projekKuliah1/java/migrasi/kelpompok5app/src/com/kelompok5/kelompok5app/model/Material.java</file>
-            <file>file:/D:/file%20uzen/data%20kuliah/projekKuliah1/java/migrasi/kelpompok5app/src/com/kelompok5/kelompok5app/model/Materialproduk.java</file>
-            <file>file:/D:/file%20uzen/data%20kuliah/projekKuliah1/java/migrasi/kelpompok5app/src/com/kelompok5/kelompok5app/databaseAcces/LaporanPengadaanCRUD.java</file>
-            <file>file:/D:/file%20uzen/data%20kuliah/projekKuliah1/java/migrasi/kelpompok5app/src/com/kelompok5/kelompok5app/model/LaporanPengadaan.java</file>
-            <file>file:/D:/file%20uzen/data%20kuliah/projekKuliah1/java/migrasi/kelpompok5app/src/com/kelompok5/kelompok5app/databaseAcces/LaporanCRUD.java</file>
-            <file>file:/D:/file%20uzen/data%20kuliah/projekKuliah1/java/migrasi/kelpompok5app/src/com/kelompok5/kelompok5app/controller/LaporanPengadaanController.java</file>
+            <file>file:/D:/New/Aplikasi_MRP_RomanCeramic/src/com/kelompok5/kelompok5app/view/Order.java</file>
+            <file>file:/D:/New/Aplikasi_MRP_RomanCeramic/src/com/kelompok5/kelompok5app/view/Purchasing.java</file>
+            <file>file:/D:/New/Aplikasi_MRP_RomanCeramic/src/com/kelompok5/kelompok5app/view/Laporan.java</file>
+            <file>file:/D:/New/Aplikasi_MRP_RomanCeramic/src/com/kelompok5/kelompok5app/view/DashboardPPIC.java</file>
+            <file>file:/D:/New/Aplikasi_MRP_RomanCeramic/src/com/kelompok5/kelompok5app/view/DashboardDepartemenGudang.java</file>
+            <file>file:/D:/New/Aplikasi_MRP_RomanCeramic/src/com/kelompok5/kelompok5app/view/DashboardLaporanProduk.java</file>
         </group>
     </open-files>
 </project-private>

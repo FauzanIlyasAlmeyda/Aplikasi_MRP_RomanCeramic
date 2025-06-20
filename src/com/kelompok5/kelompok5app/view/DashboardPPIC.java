@@ -34,8 +34,8 @@ public class DashboardPPIC extends javax.swing.JFrame {
         BtnCreateLaporan = new javax.swing.JButton();
         BtnListLaporan = new javax.swing.JButton();
         BottomPanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TabelBarang = new javax.swing.JTable();
+        ScrollTabelProduk = new javax.swing.JScrollPane();
+        TabelProduk = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +71,11 @@ public class DashboardPPIC extends javax.swing.JFrame {
         BtnListLaporan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         BtnListLaporan.setForeground(new java.awt.Color(255, 255, 255));
         BtnListLaporan.setText("List Laporan");
+        BtnListLaporan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnListLaporanActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -84,50 +89,50 @@ public class DashboardPPIC extends javax.swing.JFrame {
         BottomPanel.setOpaque(false);
         BottomPanel.setLayout(new java.awt.BorderLayout());
 
-        TabelBarang.setModel(new javax.swing.table.DefaultTableModel(
+        TabelProduk.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Kode Barang", "Nama Barang", "Kategori", "Min Stok", "Maks Stok", "Stok", "Order", "Vendor", "Tanggal Diperbarui"
+                "Kode Produk", "Nama Produk", "Material Produk", "Stok"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        TabelBarang.setShowGrid(true);
-        jScrollPane1.setViewportView(TabelBarang);
+        TabelProduk.setShowGrid(true);
+        ScrollTabelProduk.setViewportView(TabelProduk);
 
-        BottomPanel.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        BottomPanel.add(ScrollTabelProduk, java.awt.BorderLayout.CENTER);
 
         bg.add(BottomPanel, java.awt.BorderLayout.CENTER);
 
@@ -135,6 +140,11 @@ public class DashboardPPIC extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BtnListLaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnListLaporanActionPerformed
+            // TODO add your handling code here:
+            new DashboardLaporanProduk().setVisible(true);
+    }//GEN-LAST:event_BtnListLaporanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,9 +187,9 @@ public class DashboardPPIC extends javax.swing.JFrame {
     private javax.swing.JButton BtnListLaporan;
     private javax.swing.JPanel BtnPanel;
     private javax.swing.JPanel Header;
-    private javax.swing.JTable TabelBarang;
+    private javax.swing.JScrollPane ScrollTabelProduk;
+    private javax.swing.JTable TabelProduk;
     private javax.swing.JPanel bg;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel txtppic;
     // End of variables declaration//GEN-END:variables
 }
