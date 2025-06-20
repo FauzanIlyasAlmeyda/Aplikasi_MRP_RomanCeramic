@@ -353,4 +353,81 @@ public class LaporanCRUD {
         }
     }
 
+    public boolean simpanLaporanPPIC(List<LaporanPengadaan> detailLaporan) {
+        String sqlLaporan = "INSERT INTO laporan (nama_laporan) VALUES (?)";
+        String sqlDetail = "INSERT INTO laporan_detail (id_laporan, id_barang, nama_barang, stok_min, stok_max, stok, order_barang, vendor, waktu_order_terakhir, penambahan) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try {
+            conn.setAutoCommit(false);
+            String namaLaporan = generateNamaLaporanPPIC();
+
+            PreparedStatement stmtLaporan = conn.prepareStatement(sqlLaporan, Statement.RETURN_GENERATED_KEYS);
+            stmtLaporan.setString(1, namaLaporan);
+            stmtLaporan.executeUpdate();
+
+            ResultSet rs = stmtLaporan.getGeneratedKeys();
+            int idLaporan = -1;
+            if (rs.next()) {
+                idLaporan = rs.getInt(1);
+            } else {
+                conn.rollback();
+                return false;
+            }
+
+            PreparedStatement stmtDetail = conn.prepareStatement(sqlDetail);
+            for (LaporanPengadaan lp : detailLaporan) {
+                stmtDetail.setInt(1, idLaporan);
+                stmtDetail.setString(2, lp.getId());
+                stmtDetail.setString(3, lp.getNamaBarang());
+                stmtDetail.setInt(4, lp.getStokMin());
+                stmtDetail.setInt(5, lp.getStokMax());
+                stmtDetail.setInt(6, lp.getStokTersedia());
+                stmtDetail.setInt(7, lp.getOrder());
+                stmtDetail.setString(8, lp.getVendor());
+                stmtDetail.setString(9, lp.getWaktuOrderTerakhir());
+                stmtDetail.setInt(10, lp.getPenambahan());
+                stmtDetail.addBatch();
+            }
+            stmtDetail.executeBatch();
+
+            // tandai semua barang sudah dilaporkan
+            for (LaporanPengadaan lp : detailLaporan) {
+                PreparedStatement stmtFlag = conn
+                        .prepareStatement("UPDATE barang SET sudah_dilaporkan = 1 WHERE id = ?");
+                stmtFlag.setString(1, lp.getId());
+                stmtFlag.executeUpdate();
+            }
+
+            conn.commit();
+            return true;
+        } catch (SQLException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                System.err.println("Rollback gagal: " + ex.getMessage());
+            }
+            System.err.println("Gagal simpan laporanPPIC: " + e.getMessage());
+            return false;
+        } finally {
+            try {
+                conn.setAutoCommit(true);
+            } catch (SQLException e) {
+                System.err.println("Gagal setAutoCommit: " + e.getMessage());
+            }
+        }
+    }
+
+    public String generateNamaLaporanPPIC() {
+        String base = "laporanPPIC_";
+        String sql = "SELECT COUNT(*) AS total FROM laporan WHERE nama_laporan LIKE 'laporanPPIC_%'";
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+            if (rs.next()) {
+                return base + (rs.getInt("total") + 1);
+            }
+        } catch (SQLException e) {
+            System.err.println("Gagal generate nama laporanPPIC: " + e.getMessage());
+        }
+        return base + "1";
+    }
+
 }

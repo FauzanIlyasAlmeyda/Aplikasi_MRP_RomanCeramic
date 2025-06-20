@@ -130,4 +130,30 @@ public class ProdukCRUD {
             return false;
         }
     }
+
+    public Produk getById(String idProduk) {
+    Produk produk = null;
+    String sql = "SELECT * FROM produk WHERE id = ?";
+
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setString(1, idProduk);
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            produk = new Produk(
+                rs.getString("id"),
+                rs.getString("nama"),
+                rs.getInt("stok"),
+                rs.getInt("stok_min"),
+                rs.getInt("stok_max"),
+                rs.getString("kategori")
+            );
+        }
+    } catch (SQLException e) {
+        System.err.println("❌ Gagal ambil data produk: " + e.getMessage());
+    }
+
+    return produk;
+}
+
 }

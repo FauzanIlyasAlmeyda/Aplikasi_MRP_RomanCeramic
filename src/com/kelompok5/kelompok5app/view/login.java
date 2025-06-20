@@ -7,6 +7,8 @@ package com.kelompok5.kelompok5app.view;
 import com.kelompok5.kelompok5app.config.databaseConnection;
 import com.kelompok5.kelompok5app.view.DasboardAdmin;
 import com.kelompok5.kelompok5app.view.DashboardDepartemenGudang;
+import com.kelompok5.kelompok5app.view.DashboardPPIC;
+import com.kelompok5.kelompok5app.view.Purchasing;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -151,11 +153,17 @@ public class login extends javax.swing.JFrame {
                     case "gudang":
                         new DashboardDepartemenGudang().setVisible(true);
                         break;
-                    case "keuangan":
+                    case "admin":
                         new DasboardAdmin().setVisible(true);
                         break;
-                    case "admin":
-                        
+                    case "PPIC":
+                        new DashboardPPIC().setVisible(true);
+                        break;
+                    case "purchasing":
+                        new Purchasing().setVisible(true);
+                        break;
+                    case "order":
+                        new Order().setVisible(true);
                         break;
                     default:
                         JOptionPane.showMessageDialog(this, "❌ Divisi tidak dikenali: " + divisi, "Error",

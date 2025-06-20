@@ -31,6 +31,14 @@ public class Barang {
         this.stock = stock;
         this.kategori = kategori;
     }
+    public Barang(String id, String nama, int stock,int stok_max,int stok_min, String kategori) {
+        this.id = id;
+        this.nama = nama;
+        this.stock = stock;
+        this.min_stock = stok_min;
+        this.max_stock = stok_max;
+        this.kategori = kategori;
+    }
 
     // Getter & Setter
     public String getId() {

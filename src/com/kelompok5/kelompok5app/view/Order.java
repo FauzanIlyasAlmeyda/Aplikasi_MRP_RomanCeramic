@@ -57,9 +57,6 @@ public class Order extends javax.swing.JFrame {
         navbarBRG = new javax.swing.JPanel();
         NavbarContainerBRG = new javax.swing.JPanel();
         BtnPesanBRG = new javax.swing.JButton();
-        PanelSearchBRG = new javax.swing.JPanel();
-        txtFieldBRG = new javax.swing.JTextField();
-        BtnSearchBRG = new javax.swing.JButton();
         ScrollTabelBRG = new javax.swing.JScrollPane();
         TabelOrderBRG = new javax.swing.JTable();
         CardPanelPRD = new javax.swing.JPanel();
@@ -166,32 +163,6 @@ public class Order extends javax.swing.JFrame {
         NavbarContainerBRG.add(BtnPesanBRG, gridBagConstraints);
 
         navbarBRG.add(NavbarContainerBRG, java.awt.BorderLayout.EAST);
-
-        PanelSearchBRG.setMinimumSize(new java.awt.Dimension(200, 75));
-        PanelSearchBRG.setOpaque(false);
-        PanelSearchBRG.setPreferredSize(new java.awt.Dimension(300, 75));
-        PanelSearchBRG.setLayout(new java.awt.GridBagLayout());
-
-        txtFieldBRG.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtFieldBRG.setMinimumSize(new java.awt.Dimension(150, 30));
-        txtFieldBRG.setPreferredSize(new java.awt.Dimension(150, 30));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        PanelSearchBRG.add(txtFieldBRG, gridBagConstraints);
-
-        BtnSearchBRG.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        BtnSearchBRG.setText("Cari");
-        BtnSearchBRG.setMinimumSize(new java.awt.Dimension(75, 25));
-        BtnSearchBRG.setPreferredSize(new java.awt.Dimension(75, 25));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        PanelSearchBRG.add(BtnSearchBRG, gridBagConstraints);
-
-        navbarBRG.add(PanelSearchBRG, java.awt.BorderLayout.WEST);
 
         CardPanelBRG.add(navbarBRG, java.awt.BorderLayout.PAGE_END);
 
@@ -512,7 +483,6 @@ public class Order extends javax.swing.JFrame {
     private javax.swing.JButton BtnPesanBRG;
     private javax.swing.JButton BtnPesanPRD;
     private javax.swing.JButton BtnProduk;
-    private javax.swing.JButton BtnSearchBRG;
     private javax.swing.JButton BtnSearchPRD;
     private javax.swing.JPanel CardPanel;
     private javax.swing.JPanel CardPanelBRG;
@@ -520,7 +490,6 @@ public class Order extends javax.swing.JFrame {
     private javax.swing.JPanel Header;
     private javax.swing.JPanel NavbarContainerBRG;
     private javax.swing.JPanel NavbarContainerPRD;
-    private javax.swing.JPanel PanelSearchBRG;
     private javax.swing.JPanel PanelSearchPRD;
     private javax.swing.JScrollPane ScrollTabelBRG;
     private javax.swing.JScrollPane ScrollTabelPRD;
@@ -529,7 +498,6 @@ public class Order extends javax.swing.JFrame {
     private javax.swing.JPanel bg;
     private javax.swing.JPanel navbarBRG;
     private javax.swing.JPanel navbarPRD;
-    private javax.swing.JTextField txtFieldBRG;
     private javax.swing.JTextField txtFieldPRD;
     private javax.swing.JLabel txtHeader;
     // End of variables declaration//GEN-END:variables
