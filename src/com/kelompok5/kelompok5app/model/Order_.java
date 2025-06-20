@@ -1,19 +1,35 @@
 package com.kelompok5.kelompok5app.model;
 
-public class Order {
+public class Order_ {
     private String idOrder;
     private String idBarang;
     private int jumlah;
     private String waktuOrder;
+    private String tipe;
 
-    public Order(String idOrder, String idBarang, int jumlah, String waktuOrder) {
+    public Order_(String idOrder, String idBarang, int jumlah, String waktuOrder) {
         this.idOrder = idOrder;
         this.idBarang = idBarang;
         this.jumlah = jumlah;
         this.waktuOrder = waktuOrder;
     }
 
-    // Getters and Setters
+    public Order_(String idOrder, String idBarang, int jumlah, String waktuOrder, String tipe) {
+        this.idOrder = idOrder;
+        this.idBarang = idBarang;
+        this.jumlah = jumlah;
+        this.waktuOrder = waktuOrder;
+        this.tipe = tipe;
+    }
+
+    public String getTipe() {
+        return tipe;
+    }
+
+    public void setTipe(String tipe) {
+        this.tipe = tipe;
+    }
+
     public String getIdOrder() {
         return idOrder;
     }

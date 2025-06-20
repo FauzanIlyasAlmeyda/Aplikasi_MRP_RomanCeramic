@@ -60,7 +60,12 @@ public class DashboardPPIC extends javax.swing.JFrame {
         BtnCreateLaporan.setBackground(new java.awt.Color(0, 0, 0));
         BtnCreateLaporan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         BtnCreateLaporan.setForeground(new java.awt.Color(255, 255, 255));
-        BtnCreateLaporan.setText("Buat Laporan");
+        BtnCreateLaporan.setText("Tambah Stok");
+        BtnCreateLaporan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCreateLaporanActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -145,6 +150,10 @@ public class DashboardPPIC extends javax.swing.JFrame {
             // TODO add your handling code here:
             new DashboardLaporanProduk().setVisible(true);
     }//GEN-LAST:event_BtnListLaporanActionPerformed
+
+    private void BtnCreateLaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCreateLaporanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnCreateLaporanActionPerformed
 
     /**
      * @param args the command line arguments
