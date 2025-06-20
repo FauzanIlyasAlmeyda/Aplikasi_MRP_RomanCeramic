@@ -23,17 +23,31 @@ public class Laporan extends javax.swing.JFrame {
                 int row = TabelLaporan.rowAtPoint(evt.getPoint());
                 int col = TabelLaporan.columnAtPoint(evt.getPoint());
 
-                if (evt.getClickCount() == 2 && col == 2) { // kolom Aksi
+                if (evt.getClickCount() == 2 && col == 2) {
                     int idLaporan = controller.getIdLaporanByRow(row);
                     new DetailLaporanBarang(idLaporan).setVisible(true);
                     dispose();
+                } else if (col == 3) { // kolom "Hapus"
+                    int confirm = javax.swing.JOptionPane.showConfirmDialog(null, "Hapus laporan ini?", "Konfirmasi",
+                            javax.swing.JOptionPane.YES_NO_OPTION);
+                    if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+                        boolean berhasil = controller.hapusLaporan(row);
+                        if (berhasil) {
+                            javax.swing.JOptionPane.showMessageDialog(null, "✅ Laporan berhasil dihapus!");
+                            controller.tampilkanListLaporan(TabelLaporan); // refresh table
+                        } else {
+                            javax.swing.JOptionPane.showMessageDialog(null, "❌ Gagal menghapus laporan!");
+                        }
+                    }
                 }
             }
         });
+
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
@@ -86,43 +100,42 @@ public class Laporan extends javax.swing.JFrame {
         BottomPanel.setLayout(new java.awt.BorderLayout());
 
         TabelLaporan.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Nama Laporan", "Waktu", "Aksi", "Hapus"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+                new Object[][] {
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null }
+                },
+                new String[] {
+                        "Nama Laporan", "Waktu", "Aksi", "Hapus"
+                }) {
+            Class[] types = new Class[] {
+                    java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+                return types[columnIndex];
             }
         });
         TabelLaporan.setShowGrid(true);
@@ -137,10 +150,10 @@ public class Laporan extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnKembaliLaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKembaliLaporanActionPerformed
+    private void BtnKembaliLaporanActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_BtnKembaliLaporanActionPerformed
         new DashboardDepartemenGudang().setVisible(true);
         dispose();
-    }//GEN-LAST:event_BtnKembaliLaporanActionPerformed
+    }// GEN-LAST:event_BtnKembaliLaporanActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {

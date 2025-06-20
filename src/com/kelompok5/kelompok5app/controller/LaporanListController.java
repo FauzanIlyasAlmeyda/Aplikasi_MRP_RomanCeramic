@@ -65,4 +65,10 @@ public class LaporanListController {
         return crud.getNamaLaporanById(idLaporan);
     }
 
+    public boolean hapusLaporan(int index) {
+    int id = getIdLaporanByRow(index);
+    return crud.hapusLaporan(id);
+}
+
+
 }

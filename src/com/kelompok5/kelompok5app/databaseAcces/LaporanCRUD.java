@@ -55,15 +55,17 @@ public class LaporanCRUD {
             // Insert ke detail laporan
             PreparedStatement stmtDetail = conn.prepareStatement(sqlDetail);
             for (LaporanPengadaan lp : detailLaporan) {
+                int order = ambilOrderTerakhir(lp.getId());
+                String waktuOrderTerakhir = ambilWaktuOrderTerakhir(lp.getId());
                 stmtDetail.setInt(1, idLaporan);
                 stmtDetail.setString(2, lp.getId());
                 stmtDetail.setString(3, lp.getNamaBarang());
                 stmtDetail.setInt(4, lp.getStokMin());
                 stmtDetail.setInt(5, lp.getStokMax());
                 stmtDetail.setInt(6, lp.getStokTersedia());
-                stmtDetail.setInt(7, lp.getOrder());
+                stmtDetail.setInt(7, order);
                 stmtDetail.setString(8, lp.getVendor());
-                stmtDetail.setString(9, lp.getWaktuOrderTerakhir());
+                stmtDetail.setString(9, waktuOrderTerakhir);
                 stmtDetail.setInt(10, lp.getPenambahan());
                 stmtDetail.addBatch();
             }
@@ -145,6 +147,210 @@ public class LaporanCRUD {
             System.err.println("❌ Gagal ambil nama laporan: " + e.getMessage());
         }
         return nama;
+    }
+
+    private String ambilWaktuOrderTerakhir(String idBarang) {
+        String waktu = null;
+        String sql = "SELECT waktu_order FROM order_barang WHERE id_barang = ? ORDER BY waktu_order DESC LIMIT 1";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, idBarang);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                waktu = rs.getString("waktu_order");
+            }
+        } catch (SQLException e) {
+            System.err.println("❌ Gagal ambil waktu order terakhir: " + e.getMessage());
+        }
+        return waktu;
+    }
+
+    private int ambilOrderTerakhir(String idBarang) {
+        String sql = "SELECT jumlah FROM order_barang WHERE id_barang = ? ORDER BY waktu_order DESC LIMIT 1";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, idBarang);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("jumlah");
+            }
+        } catch (SQLException e) {
+            System.err.println("❌ Gagal ambil jumlah order: " + e.getMessage());
+        }
+        return 0;
+    }
+
+    public boolean tolakLaporan(int idLaporan) {
+        try {
+            conn.setAutoCommit(false);
+
+            // Ambil semua id_barang dari laporan_detail sebelum dihapus
+            String sqlAmbilBarang = "SELECT id_barang FROM laporan_detail WHERE id_laporan = ?";
+            PreparedStatement stmtAmbil = conn.prepareStatement(sqlAmbilBarang);
+            stmtAmbil.setInt(1, idLaporan);
+            ResultSet rs = stmtAmbil.executeQuery();
+
+            List<String> idBarangList = new ArrayList<>();
+            while (rs.next()) {
+                idBarangList.add(rs.getString("id_barang"));
+            }
+
+            // Hapus detail dan laporan
+            String sql1 = "DELETE FROM laporan_detail WHERE id_laporan = ?";
+            String sql2 = "DELETE FROM laporan WHERE id = ?";
+
+            PreparedStatement stmt1 = conn.prepareStatement(sql1);
+            stmt1.setInt(1, idLaporan);
+            stmt1.executeUpdate();
+
+            PreparedStatement stmt2 = conn.prepareStatement(sql2);
+            stmt2.setInt(1, idLaporan);
+            stmt2.executeUpdate();
+
+            // Reset flag sudah_dilaporkan
+            String sqlReset = "UPDATE barang SET sudah_dilaporkan = 0 WHERE id = ?";
+            PreparedStatement stmtReset = conn.prepareStatement(sqlReset);
+            for (String idBarang : idBarangList) {
+                stmtReset.setString(1, idBarang);
+                stmtReset.addBatch();
+            }
+            stmtReset.executeBatch();
+
+            conn.commit();
+            return true;
+        } catch (SQLException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                System.err.println("❌ Rollback gagal: " + ex.getMessage());
+            }
+            System.err.println("❌ Gagal tolak laporan: " + e.getMessage());
+            return false;
+        } finally {
+            try {
+                conn.setAutoCommit(true);
+            } catch (SQLException e) {
+                System.err.println("❌ Gagal set autoCommit true: " + e.getMessage());
+            }
+        }
+    }
+
+    public boolean accLaporan(int idLaporan) {
+        String selectDetail = "SELECT * FROM laporan_detail WHERE id_laporan = ?";
+        String updateBarang = "UPDATE barang SET stock = stock + ?, `order` = 0, waktu_butuh_order = NULL WHERE id = ?";
+        String deleteOrder = "DELETE FROM order_barang WHERE id_barang = ?";
+        String deleteDetail = "DELETE FROM laporan_detail WHERE id_laporan = ?";
+        String deleteLaporan = "DELETE FROM laporan WHERE id = ?";
+
+        try {
+            conn.setAutoCommit(false);
+
+            PreparedStatement stmtSelect = conn.prepareStatement(selectDetail);
+            stmtSelect.setInt(1, idLaporan);
+            ResultSet rs = stmtSelect.executeQuery();
+
+            List<String> idBarangList = new ArrayList<>();
+
+            while (rs.next()) {
+                String idBarang = rs.getString("id_barang");
+                int penambahan = rs.getInt("penambahan");
+
+                // Update stok barang
+                PreparedStatement stmtUpdate = conn.prepareStatement(updateBarang);
+                stmtUpdate.setInt(1, penambahan);
+                stmtUpdate.setString(2, idBarang);
+                stmtUpdate.executeUpdate();
+
+                // Hapus order terkait
+                PreparedStatement stmtDeleteOrder = conn.prepareStatement(deleteOrder);
+                stmtDeleteOrder.setString(1, idBarang);
+                stmtDeleteOrder.executeUpdate();
+            }
+
+            // Hapus detail laporan
+            PreparedStatement stmtDelDetail = conn.prepareStatement(deleteDetail);
+            stmtDelDetail.setInt(1, idLaporan);
+            stmtDelDetail.executeUpdate();
+
+            // Hapus header laporan
+            PreparedStatement stmtDelLaporan = conn.prepareStatement(deleteLaporan);
+            stmtDelLaporan.setInt(1, idLaporan);
+            stmtDelLaporan.executeUpdate();
+
+            // Reset flag sudah_dilaporkan
+            String reset = "UPDATE barang SET sudah_dilaporkan = 0 WHERE id = ?";
+            PreparedStatement stmtReset = conn.prepareStatement(reset);
+            for (String idBarang : idBarangList) {
+                stmtReset.setString(1, idBarang);
+                stmtReset.addBatch();
+            }
+            stmtReset.executeBatch();
+
+            conn.commit();
+            return true;
+        } catch (SQLException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                System.err.println("❌ Rollback gagal: " + ex.getMessage());
+            }
+            System.err.println("❌ Gagal ACC laporan: " + e.getMessage());
+            return false;
+        } finally {
+            try {
+                conn.setAutoCommit(true);
+            } catch (SQLException e) {
+                System.err.println("❌ Gagal set autoCommit true: " + e.getMessage());
+            }
+        }
+    }
+
+    public boolean hapusLaporan(int idLaporan) {
+        try {
+            conn.setAutoCommit(false);
+
+            // Ambil semua id_barang
+            String ambilBarangSQL = "SELECT id_barang FROM laporan_detail WHERE id_laporan = ?";
+            PreparedStatement ambilStmt = conn.prepareStatement(ambilBarangSQL);
+            ambilStmt.setInt(1, idLaporan);
+            ResultSet rs = ambilStmt.executeQuery();
+
+            List<String> idBarangList = new ArrayList<>();
+            while (rs.next()) {
+                idBarangList.add(rs.getString("id_barang"));
+            }
+
+            // Hapus laporan_detail
+            PreparedStatement hapusDetail = conn.prepareStatement("DELETE FROM laporan_detail WHERE id_laporan = ?");
+            hapusDetail.setInt(1, idLaporan);
+            hapusDetail.executeUpdate();
+
+            // Hapus laporan
+            PreparedStatement hapusLaporan = conn.prepareStatement("DELETE FROM laporan WHERE id = ?");
+            hapusLaporan.setInt(1, idLaporan);
+            hapusLaporan.executeUpdate();
+
+            // Set sudah_dilaporkan = 0
+            PreparedStatement resetStmt = conn.prepareStatement("UPDATE barang SET sudah_dilaporkan = 0 WHERE id = ?");
+            for (String idBarang : idBarangList) {
+                resetStmt.setString(1, idBarang);
+                resetStmt.addBatch();
+            }
+            resetStmt.executeBatch();
+
+            conn.commit();
+            return true;
+        } catch (SQLException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+            }
+            System.err.println("❌ Gagal hapus laporan: " + e.getMessage());
+            return false;
+        } finally {
+            try {
+                conn.setAutoCommit(true);
+            } catch (SQLException e) {
+            }
+        }
     }
 
 }
